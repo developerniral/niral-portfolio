@@ -10,7 +10,7 @@ import {
 export const HERO_DATA = {
   name: "Niral Shakya",
   title: "Senior PHP / Laravel Backend Developer",
-  subtitle: "Building scalable enterprise applications, RESTful APIs, and high-performance backend systems for over 10 years.",
+  subtitle: "Building scalable enterprise applications, RESTful APIs, custom WordPress platforms, and high-performance backend systems for over 10 years across Japanese enterprise and US freelance clients.",
   statusText: "Available for Senior & Technical Lead Roles",
   experienceYears: "10+",
   location: "Butwal, Nepal",
@@ -23,13 +23,13 @@ export const HERO_DATA = {
 };
 
 export const ABOUT_DATA = {
-  summary: "Senior PHP Developer with 10+ years of experience developing enterprise applications for Japanese clients.",
+  summary: "Senior PHP Developer with 10+ years of experience developing enterprise applications for Japanese clients at Miracle Interface, alongside delivering custom WordPress platforms & web applications for US freelance clients.",
   specializations: [
     "Core PHP",
     "Laravel",
     "REST APIs",
-    "MySQL",
-    "PostgreSQL",
+    "WordPress & WooCommerce",
+    "MySQL & PostgreSQL",
     "System Architecture",
     "Database Design",
     "Performance Optimization"
@@ -41,12 +41,12 @@ export const ABOUT_DATA = {
       desc: "Designed scalable, modular backend structures adhering to SOLID principles & Repository patterns."
     },
     {
-      title: "Japanese Client Delivery",
-      desc: "Direct technical collaboration with Japanese engineering stakeholders with high quality standards."
+      title: "Global Clients (Japan & US)",
+      desc: "Direct technical collaboration with Japanese enterprise engineering teams and US business clients."
     },
     {
-      title: "API & Payment Integration",
-      desc: "Expertise in complex payment pipelines (Stripe, GMO Payment Gateway, SoftBank) and Firebase services."
+      title: "API, CMS & Payment Integration",
+      desc: "Expertise in complex payment pipelines (Stripe, GMO, SoftBank), WordPress custom plugins, and Firebase."
     }
   ]
 };
@@ -89,17 +89,30 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     role: "Senior Programmer",
     company: "Miracle Interface Pvt. Ltd.",
     period: "2014 — Present",
-    location: "Nepal / Remote for Japanese Enterprise Clients",
+    location: "Nepal",
     highlights: [
       "Developed enterprise CRM, CMS and eCommerce systems with strict performance SLAs.",
       "Built scalable REST APIs powering web, mobile apps, and third-party microservices.",
       "Designed robust backend architecture using Laravel & Yii frameworks.",
-      "Integrated Stripe, Firebase, FCM, and major Japanese payment gateways (GMO, SoftBank Payment).",
+      "Integrated Stripe, Firebase, FCM, and major Japanese payment gateways (GMO, Kuroneko Payment).",
       "Optimized complex SQL queries and relational database schemas to dramatically improve query response times.",
-      "Mentored junior developers on code quality, design patterns, and unit testing standards.",
-      "Collaborated directly with Japanese clients on system specification, delivery, and system maintenance."
+      "Mentored intern developers through code reviews, debugging assistance, resolving technical challenges and supporting feature implementation.",      
     ],
-    techStack: ["PHP", "Laravel", "Yii", "MySQL", "PostgreSQL", "REST APIs", "Firebase", "Angular", "Docker"]
+    techStack: ["PHP", "Laravel", "Yii", "MySQL", "PostgreSQL", "REST APIs", "Firebase", "Angular", "React", "Docker"]
+  },
+  {
+    role: "Freelance Developer",
+    company: "Independent Freelance",
+    period: "2018 — Present",
+    location: "Lcal Project and Remote US Clients",
+    highlights: [
+      "Designed and developed custom WordPress themes and booking plugins, also integrated various plugins like multilanguage",
+      "Built lightweight, performance-focused web platforms achieving 90+ Core Web Vitals scores without bloated page builders.",
+      "Integrated third-party APIs, Stripe/PayPal payment gateways, custom booking workflows, and CRM platforms.",
+      "Provided end-to-end site security hardening, server migrations, database tuning, and ongoing technical maintenance.",
+      "Maintained direct client communication, scoping technical requirements, and delivering projects on schedule."
+    ],
+    techStack: ["WordPress", "PHP", "WooCommerce", "MySQL", "JavaScript", "HTML5/CSS3", "REST APIs", "React"]
   }
 ];
 
@@ -331,6 +344,66 @@ class Player extends Model
     }
 }`
     }
+  },
+  {
+    id: "us-wordpress-platform",
+    title: "US Client Custom WordPress & WooCommerce Engine",
+    tags: ["WordPress", "PHP", "WooCommerce", "Stripe", "US Clients"],
+    category: "CMS & eCommerce",
+    description: "Custom WordPress theme and plugin solution engineered for US business clients with tailored custom post types, API integrations, and WooCommerce optimizations.",
+    longDescription: "Bespoke WordPress & WooCommerce platform built for US clients requiring tailored business workflows. Features lightweight custom theme architecture (no heavy visual builders), custom plugin development for specialized business logic, Stripe payment gateway integrations, and speed optimizations.",
+    keyFeatures: [
+      "Custom PHP plugin development for automated client workflows and data processing",
+      "Tailored WooCommerce checkout & payment gateway hooks (Stripe, PayPal, Authorize.Net)",
+      "Page speed optimization achieving 90+ Google Core Web Vitals performance scores",
+      "Custom REST API integrations connecting WordPress with third-party CRM platforms"
+    ],
+    architectureDetails: "Architected following official WordPress PHP coding standards. Uses object-oriented plugin architecture, custom REST API endpoints (/wp-json/v2/), transient caching for complex queries, and secure AJAX handlers.",
+    codeSnippet: {
+      language: "php",
+      filename: "wp-content/plugins/custom-business-core/includes/class-payment-handler.php",
+      code: `<?php
+
+namespace CustomBusinessCore\\Includes;
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
+
+class PaymentHandler
+{
+    public function __construct()
+    {
+        add_action('wp_ajax_process_custom_checkout', [$this, 'handle_checkout']);
+        add_action('wp_ajax_nopriv_process_custom_checkout', [$this, 'handle_checkout']);
+    }
+
+    public function handle_checkout(): void
+    {
+        check_ajax_referer('custom_checkout_nonce', 'security');
+
+        $email   = sanitize_email($_POST['email'] ?? '');
+        $amount  = floatval($_POST['amount'] ?? 0);
+        $token   = sanitize_text_field($_POST['stripe_token'] ?? '');
+
+        if (empty($email) || $amount <= 0 || empty($token)) {
+            wp_send_json_error(['message' => 'Invalid payment parameters.'], 400);
+        }
+
+        // Custom transaction processing via Stripe API or gateway SDK
+        $response = $this->process_stripe_charge($token, $amount, $email);
+
+        if ($response['success']) {
+            wp_send_json_success([
+                'message' => 'Payment processed successfully.',
+                'transaction_id' => $response['txn_id']
+            ]);
+        } else {
+            wp_send_json_error(['message' => $response['error']], 400);
+        }
+    }
+}`
+    }
   }
 ];
 
@@ -341,9 +414,9 @@ export const TECHNICAL_SKILLS: SkillCategory[] = [
     skills: ["PHP (7.x / 8.x)", "Java", "JavaScript (ES6+)"]
   },
   {
-    category: "Frameworks",
+    category: "Frameworks & CMS",
     iconName: "Layers",
-    skills: ["Laravel", "Spring Boot", "Yii Framework", "Angular"]
+    skills: ["Laravel", "WordPress & WooCommerce", "Yii Framework", "Spring Boot", "Angular"]
   },
   {
     category: "Database",
@@ -370,18 +443,18 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     highlight: true
   },
   {
-    label: "20+ Enterprise Projects",
-    subtext: "CRM, eCommerce, IoT & Booking Platforms Delivered",
+    label: "25+ Global Projects",
+    subtext: "Enterprise Systems, CRM, WordPress & eCommerce Delivered",
     iconName: "Briefcase"
   },
   {
-    label: "REST API Specialist",
+    label: "REST API & Plugin Specialist",
     subtext: "High-Performance Endpoint Architecture & Integrations",
     iconName: "Zap"
   },
   {
-    label: "Japanese Enterprise Clients",
-    subtext: "10 Years of Direct International Delivery & Standards",
+    label: "Global Clients (US & Japan)",
+    subtext: "10 Years of Remote Engineering for Japanese Enterprises & US Businesses",
     iconName: "Globe"
   },
   {
@@ -391,7 +464,7 @@ export const ACHIEVEMENTS: AchievementItem[] = [
   },
   {
     label: "Performance Optimization",
-    subtext: "SQL Query Tuning, Index Optimization & Caching",
+    subtext: "SQL Query Tuning, Core Web Vitals & Caching",
     iconName: "TrendingUp"
   }
 ];

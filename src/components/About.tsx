@@ -21,19 +21,19 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 bg-white border-y border-slate-200/80">
+    <section id="about" className="py-16 sm:py-20 bg-[#0B1120] border-y border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#111827] text-[#D4AF37] border border-[#D4AF37]/30 text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
             <span>Professional Profile</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#F8FAFC] tracking-tight">
             About Me
           </h2>
-          <p className="mt-3 text-lg text-slate-600 font-normal leading-relaxed">
+          <p className="mt-3 text-lg text-slate-300 font-normal leading-relaxed">
             {ABOUT_DATA.summary}
           </p>
         </div>
@@ -44,9 +44,9 @@ export const About: React.FC = () => {
           {/* Main Column: Specializations Grid */}
           <div className="lg:col-span-7 space-y-6">
             
-            <div className="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-2xs">
-              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Server className="w-5 h-5 text-blue-600" />
+            <div className="bg-[#111827] rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+              <h3 className="text-lg font-bold text-[#F8FAFC] mb-4 flex items-center gap-2">
+                <Server className="w-5 h-5 text-[#D4AF37]" />
                 <span>Specialized In</span>
               </h3>
 
@@ -54,23 +54,14 @@ export const About: React.FC = () => {
                 {ABOUT_DATA.specializations.map((spec, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-blue-400/50 hover:shadow-xs transition-all group"
+                    className="flex items-center gap-3 p-3.5 rounded-xl bg-[#0B1120] border border-slate-800 shadow-2xs hover:border-[#D4AF37]/50 hover:shadow-md transition-all group"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <div className="w-7 h-7 rounded-lg bg-[#111827] text-[#D4AF37] flex items-center justify-center shrink-0 group-hover:bg-[#D4AF37] group-hover:text-slate-950 transition-colors">
                       <CheckCircle2 className="w-4 h-4" />
                     </div>
-                    <span className="font-bold text-sm text-slate-800">{spec}</span>
+                    <span className="font-bold text-sm text-[#F8FAFC]">{spec}</span>
                   </div>
                 ))}
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-slate-200/80 text-sm text-slate-600 flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <p className="leading-relaxed">
-                  <strong className="text-slate-900">End-to-End SDLC Mastery:</strong> {ABOUT_DATA.sdlcNote}
-                </p>
               </div>
             </div>
 
@@ -79,10 +70,10 @@ export const About: React.FC = () => {
               {ABOUT_DATA.highlights.map((item, index) => (
                 <div
                   key={index}
-                  className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-2 hover:border-slate-300 transition-all"
+                  className="p-5 rounded-2xl bg-[#111827] border border-slate-800 shadow-md space-y-2 hover:border-[#D4AF37]/40 transition-all"
                 >
-                  <h4 className="font-bold text-sm text-slate-900">{item.title}</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                  <h4 className="font-bold text-sm text-[#D4AF37]">{item.title}</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -92,15 +83,15 @@ export const About: React.FC = () => {
           {/* Right Column: Interactive SDLC Lifecycle & Experience Accent */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             
-            <div className="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+            <div className="bg-slate-950 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-xl space-y-6">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div>
-                  <span className="text-xs font-semibold text-blue-400 uppercase tracking-wider">
+                  <span className="text-xs font-semibold text-[#F59E0B] uppercase tracking-wider">
                     Software Lifecycle
                   </span>
-                  <h3 className="text-lg font-bold text-white">Full SDLC Execution</h3>
+                  <h3 className="text-lg font-bold text-[#F8FAFC]">Full SDLC Execution</h3>
                 </div>
-                <div className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-mono font-medium border border-blue-400/30">
+                <div className="px-3 py-1 rounded-full bg-[#111827] text-[#D4AF37] text-xs font-mono font-medium border border-[#D4AF37]/30">
                   10+ Years
                 </div>
               </div>
@@ -109,19 +100,15 @@ export const About: React.FC = () => {
               <div className="space-y-4">
                 {sdlcSteps.map((step, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold font-mono shrink-0 mt-0.5">
+                    <div className="w-6 h-6 rounded-full bg-[#D4AF37] text-slate-950 flex items-center justify-center text-xs font-bold font-mono shrink-0 mt-0.5">
                       {idx + 1}
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-slate-100 block">{step.name}</span>
+                      <span className="text-sm font-bold text-[#F8FAFC] block">{step.name}</span>
                       <span className="text-xs text-slate-400 block">{step.desc}</span>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 italic">
-                "Direct communication with Japanese project leads ensures precise requirement alignment and bug-free delivery."
               </div>
             </div>
 

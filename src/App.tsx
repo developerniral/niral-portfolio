@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#0B1120] text-[#F8FAFC] font-sans selection:bg-[#D4AF37] selection:text-slate-950">
       {/* Header Navigation */}
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
