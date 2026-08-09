@@ -23,7 +23,7 @@ export const HERO_DATA = {
 };
 
 export const ABOUT_DATA = {
-  summary: "Senior PHP Developer with 10+ years of experience developing enterprise applications for Japanese clients at Miracle Interface, alongside delivering custom WordPress platforms & web applications for US freelance clients.",
+  summary: "Senior PHP Developer with 10+ years of experience designing and developing enterprise applications, scalable RESTful APIs, and backend systems for Japanese clients at Miracle Interface, alongside delivering custom WordPress and web applications for US clients as freelancer",
   specializations: [
     "Core PHP",
     "Laravel",
@@ -96,7 +96,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     highlights: [
       "Designed and developed enterprise CRM, CMS and eCommerce system using Core PHP, Laravel, and Angular.",
       "Designed and implemented scalable RESTful APIs for web and mobile applications.",
-      "Designed robust backend architecture using Laravel & Yii frameworks.",
+      "Designed modular backend architectures using Laravel and Yii, applying MVC, SOLID principles, service-layer patterns, and reusable components to improve maintainability and scalability",
       "Integrated Stripe, Firebase, FCM, and major Japanese payment gateways (GMO, Kuroneko Payment).",
       "Optimized MySQL and PostgreSQL databases through query tuning, indexing, and applying transaction",
       "Participated in system design, database schema planning, and application architecture discussions.",
@@ -122,7 +122,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: "ecommerce-platform",
     title: "Enterprise eCommerce Platform",
-    tags: ["Laravel", "Yii", "PostgresSQL", "Japanese Gateways"],
+    tags: ["Laravel", "Yii", "PostgreSQL", "Japanese Gateways"],
     category: "eCommerce",
     imageUrl: "/assets/projects/ecommerce-main.jpg",
     description: "Enterprise eCommerce platform featuring inventory management, subscriptions, coupons, reward points, commissions, and Japanese payment gateway integration.",
@@ -257,7 +257,7 @@ class ReservationController extends Controller
   {
     id: "resource-management",
     title: "Resource Management System",
-    tags: ["Laravel","Yii", "Angular", "Postgres","FCM"],
+    tags: ["Laravel","Yii", "Angular", "PostgreSQL","FCM"],
     category: "Resource Mgmt",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     description: "Enterprise workforce management system with RBAC, reporting, dashboards, and export functionality.",

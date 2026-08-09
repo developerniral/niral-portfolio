@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Server,
   Database,
@@ -10,43 +10,19 @@ import {
   Sparkles,
   CheckCircle2,
   X,
-  Copy,
-  Check,
   Info,
-  ExternalLink,
   Code,
-  Zap,
   Grid,
-  ListFilter,
-  MousePointerClick,
-  Award,
-  ChevronRight
+  ListFilter
 } from 'lucide-react';
 import { TECHNICAL_SKILLS } from '../data/portfolioData';
-import { SkillCategory, SkillDetail } from '../types';
 
 export const Skills: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeSkillModal, setActiveSkillModal] = useState<{
-    categoryName: string;
-    skill: SkillDetail | { name: string; description?: string };
-  } | null>(null);
-  const [copiedText, setCopiedText] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'grid' | 'compact'>('grid');
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // Close modal on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setActiveSkillModal(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
@@ -69,40 +45,12 @@ export const Skills: React.FC = () => {
 
   const categoriesList = ['All', ...TECHNICAL_SKILLS.map(cat => cat.category)];
 
-  const handleCopySkill = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedText(true);
-    setTimeout(() => setCopiedText(false), 2000);
-  };
-
   const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     });
-  };
-
-  // Find skill details helper
-  const getSkillDetail = (category: SkillCategory, skillName: string): SkillDetail => {
-    if (category.detailedSkills) {
-      const match = category.detailedSkills.find(
-        ds => ds.name.toLowerCase() === skillName.toLowerCase() || skillName.toLowerCase().includes(ds.name.toLowerCase())
-      );
-      if (match) return match;
-    }
-    return {
-      name: skillName,
-      level: "Proficient",
-      years: "10+ Years",
-      description: `Core enterprise development skill applied in production systems for web applications, API integrations, and database architectures.`,
-      projects: ["Enterprise eCommerce Platform", "US WordPress Engine", "Vehicle Reservation System"],
-      highlights: [
-        "Applied in high-concurrency production environments",
-        "Adheres to clean code and SOLID architecture principles",
-        "Optimized for security, performance, and maintainability"
-      ]
-    };
   };
 
   const filteredCategories = TECHNICAL_SKILLS.filter(cat => {
@@ -132,13 +80,13 @@ export const Skills: React.FC = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111827] text-[#D4AF37] border border-[#D4AF37]/30 text-xs font-semibold mb-3 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span>Unified Technical Pillars</span>
+              <span>Technical Pillars</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F8FAFC] tracking-tight">
-              Technical Skills & Domain Mastery
+              Technical Skills & Competencies
             </h2>
             <p className="mt-3 text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-              A comprehensive, interactive directory of backend architecture, database engines, web frameworks, payment pipelines, and developer tooling mastered across 10+ years.
+              A structured directory of backend architecture, database engines, web frameworks, payment pipelines, and developer tooling mastered across 10+ years.
             </p>
           </div>
 
@@ -235,10 +183,10 @@ export const Skills: React.FC = () => {
               )}
             </div>
 
-            {/* Interactive Mouse Hint */}
+            {/* Status Hint */}
             <div className="inline-flex items-center gap-1.5 text-[11px] text-[#D4AF37] font-medium bg-[#0B1120] px-3 py-1.5 rounded-lg border border-[#D4AF37]/20">
-              <MousePointerClick className="w-3.5 h-3.5 animate-bounce" />
-              <span>Click on any skill badge or card to view detailed experience & project highlights</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
+              <span>Filter by category or search specific technologies above</span>
             </div>
           </div>
 
@@ -258,7 +206,7 @@ export const Skills: React.FC = () => {
                   onMouseEnter={() => setHoveredCardIndex(idx)}
                   onMouseLeave={() => setHoveredCardIndex(null)}
                   onMouseMove={handleCardMouseMove}
-                  className="relative group bg-[#111827] rounded-2xl p-6 border border-slate-800/90 shadow-xl hover:border-[#D4AF37]/60 hover:shadow-2xl hover:shadow-[#D4AF37]/10 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="relative group bg-[#111827] rounded-2xl p-6 border border-slate-800/90 shadow-xl hover:border-[#D4AF37]/50 hover:shadow-2xl hover:shadow-[#D4AF37]/10 transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Subtle Mouse Spotlight Glowing Effect */}
                   {hoveredCardIndex === idx && (
@@ -297,43 +245,22 @@ export const Skills: React.FC = () => {
                     <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-800/80">
                       {cat.skills.map((skillName, sIdx) => {
                         const isHighlighted = searchQuery && skillName.toLowerCase().includes(searchQuery.toLowerCase());
-                        const skillData = getSkillDetail(cat, skillName);
 
                         return (
-                          <button
+                          <span
                             key={sIdx}
-                            onClick={() => setActiveSkillModal({ categoryName: cat.category, skill: skillData })}
-                            className={`group/skill relative inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 ${
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 select-none ${
                               isHighlighted
                                 ? 'bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37] shadow-md shadow-[#D4AF37]/20'
-                                : 'bg-[#0B1120] text-slate-200 border border-slate-800 hover:border-[#D4AF37]/60 hover:text-[#D4AF37] hover:bg-[#111827]'
+                                : 'bg-[#0B1120] text-slate-200 border border-slate-800/90 hover:border-[#D4AF37]/50 hover:text-[#D4AF37]'
                             }`}
                           >
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 group-hover/skill:scale-110 transition-transform" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
                             <span>{skillName}</span>
-                            <ChevronRight className="w-3 h-3 opacity-0 group-hover/skill:opacity-100 transition-opacity text-[#D4AF37]" />
-                          </button>
+                          </span>
                         );
                       })}
                     </div>
-                  </div>
-
-                  {/* Card Footer Action */}
-                  <div className="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-semibold text-slate-400 group-hover:text-[#D4AF37] transition-colors">
-                    <span>Inspect Category Expertise</span>
-                    <button
-                      onClick={() => {
-                        if (cat.detailedSkills && cat.detailedSkills.length > 0) {
-                          setActiveSkillModal({ categoryName: cat.category, skill: cat.detailedSkills[0] });
-                        } else {
-                          setActiveSkillModal({ categoryName: cat.category, skill: getSkillDetail(cat, cat.skills[0]) });
-                        }
-                      }}
-                      className="inline-flex items-center gap-1 hover:underline cursor-pointer"
-                    >
-                      <span>Explore Details</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
                   </div>
 
                 </div>
@@ -348,10 +275,10 @@ export const Skills: React.FC = () => {
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <h3 className="font-bold text-[#F8FAFC] text-base flex items-center gap-2">
                 <Code className="w-5 h-5 text-[#D4AF37]" />
-                <span>Interactive Technology Cloud</span>
+                <span>Categorized Technology Cloud</span>
               </h3>
               <span className="text-xs text-slate-400 font-mono">
-                Click any badge for in-depth breakdown
+                Production Skills Overview
               </span>
             </div>
 
@@ -363,24 +290,15 @@ export const Skills: React.FC = () => {
                     <span>{cat.category}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {cat.skills.map((skillName, sIdx) => {
-                      const skillData = getSkillDetail(cat, skillName);
-                      return (
-                        <button
-                          key={sIdx}
-                          onClick={() => setActiveSkillModal({ categoryName: cat.category, skill: skillData })}
-                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0B1120] border border-slate-800 text-slate-200 text-xs font-semibold hover:border-[#D4AF37] hover:text-[#D4AF37] hover:shadow-md transition-all cursor-pointer"
-                        >
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37]" />
-                          <span>{skillName}</span>
-                          {skillData.years && (
-                            <span className="text-[10px] font-mono text-slate-400 bg-slate-900 px-1.5 py-0.5 rounded">
-                              {skillData.years}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
+                    {cat.skills.map((skillName, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0B1120] border border-slate-800 text-slate-200 text-xs font-semibold hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-all select-none"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37]" />
+                        <span>{skillName}</span>
+                      </span>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -401,7 +319,7 @@ export const Skills: React.FC = () => {
                 setSearchQuery('');
                 setSelectedCategory('All');
               }}
-              className="px-4 py-2 rounded-xl bg-[#0B1120] text-xs font-bold text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-slate-800 transition-colors"
+              className="px-4 py-2 rounded-xl bg-[#0B1120] text-xs font-bold text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-slate-800 transition-colors cursor-pointer"
             >
               Reset Filters
             </button>
@@ -409,137 +327,6 @@ export const Skills: React.FC = () => {
         )}
 
       </div>
-
-      {/* SKILL DETAIL INTERACTIVE MODAL */}
-      {activeSkillModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setActiveSkillModal(null)}
-        >
-          <div
-            className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-xl w-full relative overflow-hidden text-[#F8FAFC] p-6 space-y-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="flex items-start justify-between gap-4 pb-4 border-b border-slate-800">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#0B1120] border border-[#D4AF37]/40 flex items-center justify-center shadow-lg">
-                  <Zap className="w-6 h-6 text-[#D4AF37]" />
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider font-mono">
-                    {activeSkillModal.categoryName}
-                  </span>
-                  <h3 className="text-2xl font-extrabold text-[#F8FAFC]">
-                    {activeSkillModal.skill.name}
-                  </h3>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setActiveSkillModal(null)}
-                className="p-2 rounded-xl text-slate-400 hover:text-[#F8FAFC] hover:bg-slate-800 transition-colors cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Badges / Experience Level */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold font-mono">
-              {'level' in activeSkillModal.skill && activeSkillModal.skill.level && (
-                <span className="px-3 py-1 rounded-lg bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/40">
-                  {activeSkillModal.skill.level}
-                </span>
-              )}
-              {'years' in activeSkillModal.skill && activeSkillModal.skill.years && (
-                <span className="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-                  {activeSkillModal.skill.years}
-                </span>
-              )}
-              <span className="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
-                Production Tested
-              </span>
-            </div>
-
-            {/* Skill Description */}
-            {'description' in activeSkillModal.skill && activeSkillModal.skill.description && (
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  Technical Scope & Overview
-                </h4>
-                <p className="text-sm text-slate-200 leading-relaxed bg-[#0B1120] p-4 rounded-xl border border-slate-800/80 font-normal">
-                  {activeSkillModal.skill.description}
-                </p>
-              </div>
-            )}
-
-            {/* Featured Projects Where Skill Was Used */}
-            {'projects' in activeSkillModal.skill && activeSkillModal.skill.projects && activeSkillModal.skill.projects.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  Featured Applications & Deliverables
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {activeSkillModal.skill.projects.map((pName, pIdx) => (
-                    <span
-                      key={pIdx}
-                      className="px-3 py-1.5 rounded-lg bg-[#0B1120] text-slate-300 text-xs font-semibold border border-slate-800 flex items-center gap-1.5"
-                    >
-                      <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
-                      <span>{pName}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Key Technical Highlights */}
-            {'highlights' in activeSkillModal.skill && activeSkillModal.skill.highlights && activeSkillModal.skill.highlights.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                  Key Technical Capabilities
-                </h4>
-                <div className="space-y-2 bg-[#0B1120] p-4 rounded-xl border border-slate-800/80">
-                  {activeSkillModal.skill.highlights.map((hText, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2 text-xs font-medium text-slate-200">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37] shrink-0 mt-0.5" />
-                      <span>{hText}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Modal Footer */}
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-              <button
-                onClick={() => handleCopySkill(activeSkillModal.skill.name)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0B1120] hover:bg-slate-800 text-slate-200 hover:text-[#D4AF37] border border-slate-800 text-xs font-bold transition-all cursor-pointer"
-              >
-                {copiedText ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-400">Copied to Clipboard!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Copy Tech Name</span>
-                  </>
-                )}
-              </button>
-
-              <button
-                onClick={() => setActiveSkillModal(null)}
-                className="px-5 py-2 rounded-xl bg-[#D4AF37] hover:bg-[#F59E0B] text-slate-950 font-bold text-xs transition-all shadow-md cursor-pointer"
-              >
-                Close
-              </button>
-            </div>
-
-          </div>
-        </div>
-      )}
 
     </section>
   );
