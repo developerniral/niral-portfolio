@@ -289,7 +289,7 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Key Features */}
-              {activeModalProject.keyFeatures && (
+              {activeModalProject.keyFeatures && false && (
                 <div className="space-y-3">
                   <h4 className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider">
                     Key Technical Features
@@ -306,7 +306,7 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Architecture Details */}
-              {activeModalProject.architectureDetails && (
+              {activeModalProject.architectureDetails && false && (
                 <div className="space-y-2 p-4 rounded-xl bg-[#0B1120] border border-[#D4AF37]/30 text-xs text-slate-200">
                   <span className="font-bold block uppercase tracking-wider text-[10px] text-[#D4AF37]">
                     Backend Architecture Strategy
@@ -318,7 +318,7 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Code Snippet */}
-              {activeModalProject.codeSnippet && (
+              {activeModalProject.codeSnippet && false && (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-bold text-[#F8FAFC] flex items-center gap-1.5">

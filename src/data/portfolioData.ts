@@ -385,25 +385,25 @@ class Player extends Model
   },
   {
     id: "us-wordpress-platform",
-    title: "US Client Custom WordPress & WooCommerce Engine",
-    tags: ["WordPress", "PHP", "WooCommerce", "Stripe", "US Clients"],
-    category: "CMS & eCommerce",
+    title: "Custom WordPress",
+    tags: ["WordPress", "PHP"],
+    category: "CMS",
     imageUrl: "/assets/projects/wordpress-main.jpg",
-    description: "Custom WordPress theme and plugin solution engineered for US business clients with tailored custom post types, API integrations, and WooCommerce optimizations.",
+    description: "Custom WordPress theme and plugin solution engineered for US business clients with tailored custom post types, API integrations.",
     subProjects: [
       {
         id: "us-sub-1",
-        name: "WooCommerce Customizer & Booking Storefront",
+        name: "Uranz Hair Studio & Spa",
         imageUrl: "/assets/projects/sub-woo-booking.jpg",
-        description: "Bespoke WooCommerce store with custom product option builders, appointment booking plugins, and automated Stripe checkout.",
-        tags: ["WooCommerce", "WordPress", "Stripe"]
+        description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
+        tags: ["WordPress"]
       },
       {
         id: "us-sub-2",
-        name: "Multilingual B2B Wholesale Product Catalog",
-        imageUrl: "/assets/projects/sub-b2b-wholesale.jpg",
-        description: "Custom WordPress catalog with tier-based wholesale account permissions, multi-currency switcher, and WPML multilanguage support.",
-        tags: ["WordPress", "PHP", "Multilanguage", "WPML"]
+        name: "Liveboard",
+        imageUrl: "/assets/projects/liveboard.jpg",
+        description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
+        tags: ["WordPress", "PHP", "Multilanguage"]
       }
     ],
     longDescription: "Bespoke WordPress & WooCommerce platform built for US clients requiring tailored business workflows. Features lightweight custom theme architecture (no heavy visual builders), custom plugin development for specialized business logic, Stripe payment gateway integrations, and speed optimizations.",
@@ -758,15 +758,15 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     //highlight: true
   },
   {
-    label: "15+ Global Projects",
+    label: "20+ Global Projects",
     subtext: "Enterprise Systems, CRM, WordPress & eCommerce Delivered",
     iconName: "Briefcase"
   },
-  {
-    label: "REST API & Plugin Specialist",
-    subtext: "High-Performance Endpoint Architecture & Integrations",
-    iconName: "Zap"
-  },
+  // {
+  //   label: "REST API & Plugin Specialist",
+  //   subtext: "High-Performance Endpoint Architecture & Integrations",
+  //   iconName: "Zap"
+  // },
   {
     label: "Backend Architecture",
     subtext: "SOLID Principles, Repository Pattern & Design Patterns",

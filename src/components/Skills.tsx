@@ -83,7 +83,7 @@ export const Skills: React.FC = () => {
               <span>Technical Pillars</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F8FAFC] tracking-tight">
-              Technical Skills & Competencies
+              Technical Skills
             </h2>
             <p className="mt-3 text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
               A structured directory of backend architecture, database engines, web frameworks, payment pipelines, and developer tooling mastered across 10+ years.
@@ -95,10 +95,6 @@ export const Skills: React.FC = () => {
             <div className="p-2.5 rounded-xl bg-[#0B1120] border border-slate-800/80 text-center">
               <span className="block text-lg font-black text-[#D4AF37] font-mono">10+ Yrs</span>
               <span className="text-[11px] text-slate-400 font-medium">PHP & Backend</span>
-            </div>
-            <div className="p-2.5 rounded-xl bg-[#0B1120] border border-slate-800/80 text-center">
-              <span className="block text-lg font-black text-[#F59E0B] font-mono">6 Domains</span>
-              <span className="text-[11px] text-slate-400 font-medium">Technical Pillars</span>
             </div>
             <div className="p-2.5 rounded-xl bg-[#0B1120] border border-slate-800/80 text-center col-span-2 sm:col-span-1">
               <span className="block text-lg font-black text-emerald-400 font-mono">25+ Skills</span>
