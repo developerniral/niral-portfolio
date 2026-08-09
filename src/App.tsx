@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { CoreExpertise } from './components/CoreExpertise';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
@@ -15,7 +14,8 @@ export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   const handleNavigate = (id: string) => {
-    const element = document.getElementById(id);
+    const targetId = id === 'expertise' ? 'skills' : id;
+    const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -39,16 +39,13 @@ export default function App() {
         {/* About Section */}
         <About />
 
-        {/* Core Expertise Section */}
-        <CoreExpertise />
-
         {/* Professional Experience Section */}
         <Experience />
 
         {/* Featured Projects Section */}
         <Projects />
 
-        {/* Technical Skills Section */}
+        {/* Unified Technical Skills Section */}
         <Skills />
 
         {/* Achievements Section */}

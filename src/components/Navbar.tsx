@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume, onNavigate }) => {
         setIsScrolled(false);
       }
 
-      const sections = ['about', 'expertise', 'experience', 'projects', 'skills', 'achievements', 'contact'];
+      const sections = ['about', 'experience', 'projects', 'skills', 'achievements', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -42,7 +42,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume, onNavigate }) => {
 
   const navLinks = [
     { name: 'About', id: 'about' },
-    { name: 'Expertise', id: 'expertise' },
     { name: 'Experience', id: 'experience' },
     { name: 'Projects', id: 'projects' },
     { name: 'Skills', id: 'skills' },

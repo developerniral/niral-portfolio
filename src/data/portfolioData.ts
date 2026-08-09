@@ -9,9 +9,9 @@ import {
 
 export const HERO_DATA = {
   name: "Niral Shakya",
-  title: "Senior PHP / Laravel Backend Developer",
-  subtitle: "Building scalable enterprise applications, RESTful APIs, custom WordPress platforms, and high-performance backend systems for over 10 years across Japanese enterprise and US freelance clients.",
-  statusText: "Available for Senior & Technical Lead Roles",
+  title: "Senior PHP / Fullstack Developer",
+  subtitle: "Building scalable enterprise applications, RESTful APIs and high-performance backend systems in PHP for over 10 years across Japanese enterprise and US freelance clients.",
+  statusText: "Available for Senior Developer",
   experienceYears: "10+",
   location: "Butwal, Nepal",
   socialLinks: [
@@ -27,12 +27,11 @@ export const ABOUT_DATA = {
   specializations: [
     "Core PHP",
     "Laravel",
-    "REST APIs",
-    "WordPress & WooCommerce",
+    "REST APIs",       
     "MySQL & PostgreSQL",
     "System Architecture",
     "Database Design",
-    "Performance Optimization"
+    "Performance Optimization",
   ],
   sdlcNote: "Experienced throughout the Software Development Life Cycle, from requirements gathering to deployment and maintenance.",
   highlights: [
@@ -41,13 +40,17 @@ export const ABOUT_DATA = {
       desc: "Designed scalable, modular backend structures adhering to SOLID principles & Repository patterns."
     },
     {
-      title: "Global Clients (Japan & US)",
-      desc: "Direct technical collaboration with Japanese enterprise engineering teams and US business clients."
+      title: "Professional Developer",
+      desc: "Technical collaboration with project manager, engineering teams in Nepal and Japan"
     },
     {
-      title: "API, CMS & Payment Integration",
-      desc: "Expertise in complex payment pipelines (Stripe, GMO, SoftBank), WordPress custom plugins, and Firebase."
-    }
+      title: "Freelance Developer",
+      desc: "Direct collaborate with US business clients.",
+    },
+    {
+      title: "Payment Integration",
+      desc: "Expertise in complex payment pipelines (Stripe, GMO, Kuroneko)"
+    },
   ]
 };
 
@@ -55,13 +58,13 @@ export const CORE_EXPERTISE: ExpertiseCategory[] = [
   {
     title: "Backend Development",
     iconName: "Server",
-    description: "Robust, high-throughput server architecture and seamless third-party service integration.",
+    description: "Robust, high-throughput server architecture and payment gateway integration.",
     skills: ["Core PHP", "Laravel", "REST API", "Authentication", "Payment Integration"]
   },
   {
     title: "Database",
     iconName: "Database",
-    description: "High-performance data layer design, index tuning, and efficient query optimization.",
+    description: "High-performance data layer design, index tuning, and query optimization.",
     skills: ["MySQL", "PostgreSQL", "Schema Design", "Query Optimization"]
   },
   {
@@ -71,16 +74,16 @@ export const CORE_EXPERTISE: ExpertiseCategory[] = [
     skills: ["SOLID", "Design Patterns", "MVC", "Repository Pattern", "Microservices"]
   },
   {
-    title: "Cloud",
+    title: "Cloud & Services",
     iconName: "Cloud",
     description: "Cloud-native backend deployments and real-time event distribution.",
     skills: ["Google Cloud Platform", "Firebase", "FCM", "Cloud Functions"]
   },
   {
-    title: "Frontend",
+    title: "Frontend & Frameworks",
     iconName: "Layout",
-    description: "Full-stack integration for interactive dashboards and enterprise administrative portals.",
-    skills: ["Angular", "JavaScript", "Bootstrap", "jQuery"]
+    description: "Full-stack web application development and administrative portals.",
+    skills: ["Angular", "JavaScript", "React", "Bootstrap"]
   }
 ];
 
@@ -91,11 +94,12 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     period: "2014 — Present",
     location: "Nepal",
     highlights: [
-      "Developed enterprise CRM, CMS and eCommerce systems with strict performance SLAs.",
-      "Built scalable REST APIs powering web, mobile apps, and third-party microservices.",
+      "Designed and developed enterprise CRM, CMS and eCommerce system using Core PHP, Laravel, and Angular.",
+      "Designed and implemented scalable RESTful APIs for web and mobile applications.",
       "Designed robust backend architecture using Laravel & Yii frameworks.",
       "Integrated Stripe, Firebase, FCM, and major Japanese payment gateways (GMO, Kuroneko Payment).",
-      "Optimized complex SQL queries and relational database schemas to dramatically improve query response times.",
+      "Optimized MySQL and PostgreSQL databases through query tuning, indexing, and applying transaction",
+      "Participated in system design, database schema planning, and application architecture discussions.",
       "Mentored intern developers through code reviews, debugging assistance, resolving technical challenges and supporting feature implementation.",      
     ],
     techStack: ["PHP", "Laravel", "Yii", "MySQL", "PostgreSQL", "REST APIs", "Firebase", "Angular", "React", "Docker"]
@@ -103,16 +107,14 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     role: "Freelance Developer",
     company: "Independent Freelance",
-    period: "2018 — Present",
-    location: "Lcal Project and Remote US Clients",
+    period: "2024 - Present",
+    location: "Local Project and Remote US Clients",
     highlights: [
       "Designed and developed custom WordPress themes and booking plugins, also integrated various plugins like multilanguage",
-      "Built lightweight, performance-focused web platforms achieving 90+ Core Web Vitals scores without bloated page builders.",
-      "Integrated third-party APIs, Stripe/PayPal payment gateways, custom booking workflows, and CRM platforms.",
-      "Provided end-to-end site security hardening, server migrations, database tuning, and ongoing technical maintenance.",
+      "Provided end-to-end server migrations, database tuning, and ongoing technical maintenance.",
       "Maintained direct client communication, scoping technical requirements, and delivering projects on schedule."
     ],
-    techStack: ["WordPress", "PHP", "WooCommerce", "MySQL", "JavaScript", "HTML5/CSS3", "REST APIs", "React"]
+    techStack: ["PHP", "WordPress", "React", "MySQL", "JavaScript", "HTML5/CSS3", "REST APIs"]
   }
 ];
 
@@ -120,14 +122,45 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: "ecommerce-platform",
     title: "Enterprise eCommerce Platform",
-    tags: ["Laravel", "Yii", "MySQL", "Japanese Gateways"],
+    tags: ["Laravel", "Yii", "PostgresSQL", "Japanese Gateways"],
     category: "eCommerce",
+    imageUrl: "/assets/projects/ecommerce-main.jpg",
     description: "Enterprise eCommerce platform featuring inventory management, subscriptions, coupons, reward points, commissions, and Japanese payment gateway integration.",
+    subProjects: [
+      {
+        id: "sub-1",
+        name: "Japanese Multi-Vendor B2B & B2C Marketplace",
+        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        description: "B2B and B2C storefront featuring bulk quantity discounting, inventory sync across regional fulfillment hubs, and GMO / Kuroneko payment gateways.",
+        tags: ["Laravel", "MySQL", "GMO Gateway", "B2B / B2C"]
+      },
+      {
+        id: "sub-2",
+        name: "Subscription & Recurring Membership Portal",
+        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        description: "Automated recurring order billing system with flexible delivery schedules, member reward tiers, and automated failed-payment recovery workflows.",
+        tags: ["Laravel", "Stripe", "Subscriptions", "Redis"]
+      },
+      {
+        id: "sub-3",
+        name: "High-Volume Flash Sale & Coupon Storefront",
+        imageUrl: "/assets/projects/sub-flash-sale.jpg",
+        description: "Optimized storefront engineered for peak flash sale traffic events with real-time stock allocation and fast gateway checkout.",
+        tags: ["Yii", "PostgreSQL", "Caching", "Coupons"]
+      },
+      {
+        id: "sub-4",
+        name: "Affiliate & Multi-Tier Commission Engine",
+        imageUrl: "/assets/projects/sub-affiliate-engine.jpg",
+        description: "Comprehensive partner portal for tracking affiliate referral sales, calculating dynamic commission tiers, and managing payout processing.",
+        tags: ["Laravel", "REST APIs", "Affiliates", "Analytics"]
+      }
+    ],
     longDescription: "A comprehensive multi-tenant eCommerce engine engineered for high-volume transactions and complex pricing rules. Features integrated inventory tracking across warehouses, automated recurring subscription billing, tiered reward point distribution, and custom commission structures.",
     keyFeatures: [
       "Multi-tier subscription billing engine with automated retry workflows",
-      "Japanese payment gateway integrations (GMO, SoftBank Payment, VeriTrans)",
-      "Coupons & dynamic commission calculations for affiliate marketing",
+      "Payment gateway integrations (GMO, Kuroneko Payment, Stripe)",
+      "Coupons & timesale discount logic as offer system",
       "High-throughput MySQL query optimization for peak sales events"
     ],
     architectureDetails: "Built on a modular Laravel framework using the Repository-Service pattern to decouple business logic from controllers. Includes background queue processing via Redis for order receipts and notification dispatch.",
@@ -168,7 +201,7 @@ class JapaneseGatewayService implements PaymentGatewayInterface
 
         return [
             'transaction_id' => $response['transaction_id'],
-            'status' => 'settled',
+            'status' => 'ok',
             'raw_response' => $response->json()
         ];
     }
@@ -180,6 +213,7 @@ class JapaneseGatewayService implements PaymentGatewayInterface
     title: "Vehicle Reservation System",
     tags: ["Laravel", "Angular", "Firebase", "FCM"],
     category: "Reservations",
+    imageUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80",
     description: "Reservation management platform with REST APIs, scheduling, booking management, and mobile push notifications.",
     longDescription: "An end-to-end fleet and vehicle booking platform enabling real-time slot scheduling, driver assignment, vehicle availability tracking, and automated mobile alerts.",
     keyFeatures: [
@@ -223,8 +257,9 @@ class ReservationController extends Controller
   {
     id: "resource-management",
     title: "Resource Management System",
-    tags: ["Yii", "Angular", "RBAC", "Reporting"],
+    tags: ["Laravel","Yii", "Angular", "Postgres","FCM"],
     category: "Resource Mgmt",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     description: "Enterprise workforce management system with RBAC, reporting, dashboards, and export functionality.",
     longDescription: "A workforce management suite designed for tracking project allocation, employee billable hours, role-based access control, and executive reporting.",
     keyFeatures: [
@@ -257,14 +292,16 @@ class RbacManager extends Component
   {
     id: "iot-monitoring",
     title: "IoT Monitoring Platform",
-    tags: ["Laravel", "Firebase", "Real-time", "IoT"],
+    tags: ["Laravel", "Firebase", "Angular", "Real-time", "IoT"],
     category: "IoT",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     description: "Industrial monitoring platform with real-time dashboards and cloud-connected IoT devices.",
     longDescription: "An industrial IoT platform collecting telemetry data from physical sensor nodes, visualizing environmental parameters in real-time, and firing automated safety alerts.",
     keyFeatures: [
       "Real-time sensor telemetry ingestion and state persistence",
+      "Interactive analytics dashboard with Angular charts & CSV/Excel/PDF export",
       "Live updating web dashboard powered by Firebase Realtime DB",
-      "Threshold alert engine with automated email & SMS triggers",
+      "Threshold alert engine with automated email & FCM based mobile notification",
       "Historical data archiving and trend analysis graphs"
     ],
     architectureDetails: "Laravel background workers ingest incoming MQTT/HTTP payloads, persist time-series logs in PostgreSQL, and stream current status to Firebase for zero-latency client updates.",
@@ -308,6 +345,7 @@ class ProcessTelemetryData implements ShouldQueue
     title: "Butwal Cricket Platform",
     tags: ["Laravel", "MySQL", "Community", "Sports"],
     category: "Community",
+    imageUrl: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1200&q=80",
     description: "Community cricket platform featuring tournaments, teams, players, fixtures, events, and news management.",
     longDescription: "A dedicated regional sports platform empowering cricket leagues, local teams, and fans with live tournament scorecards, player statistics, match schedules, and media publishing.",
     keyFeatures: [
@@ -350,7 +388,24 @@ class Player extends Model
     title: "US Client Custom WordPress & WooCommerce Engine",
     tags: ["WordPress", "PHP", "WooCommerce", "Stripe", "US Clients"],
     category: "CMS & eCommerce",
+    imageUrl: "/assets/projects/wordpress-main.jpg",
     description: "Custom WordPress theme and plugin solution engineered for US business clients with tailored custom post types, API integrations, and WooCommerce optimizations.",
+    subProjects: [
+      {
+        id: "us-sub-1",
+        name: "WooCommerce Customizer & Booking Storefront",
+        imageUrl: "/assets/projects/sub-woo-booking.jpg",
+        description: "Bespoke WooCommerce store with custom product option builders, appointment booking plugins, and automated Stripe checkout.",
+        tags: ["WooCommerce", "WordPress", "Stripe"]
+      },
+      {
+        id: "us-sub-2",
+        name: "Multilingual B2B Wholesale Product Catalog",
+        imageUrl: "/assets/projects/sub-b2b-wholesale.jpg",
+        description: "Custom WordPress catalog with tier-based wholesale account permissions, multi-currency switcher, and WPML multilanguage support.",
+        tags: ["WordPress", "PHP", "Multilanguage", "WPML"]
+      }
+    ],
     longDescription: "Bespoke WordPress & WooCommerce platform built for US clients requiring tailored business workflows. Features lightweight custom theme architecture (no heavy visual builders), custom plugin development for specialized business logic, Stripe payment gateway integrations, and speed optimizations.",
     keyFeatures: [
       "Custom PHP plugin development for automated client workflows and data processing",
@@ -409,29 +464,289 @@ class PaymentHandler
 
 export const TECHNICAL_SKILLS: SkillCategory[] = [
   {
-    category: "Languages",
-    iconName: "Code",
-    skills: ["PHP (7.x / 8.x)", "Java", "JavaScript (ES6+)"]
+    category: "Backend & API Engineering",
+    iconName: "Server",
+    description: "Robust, high-throughput server architecture, RESTful API endpoints, and payment gateway integrations.",
+    skills: ["Core PHP (7.x / 8.x)", "Laravel Framework", "Yii Framework", "RESTful APIs", "Payment Gateways (Stripe, GMO, Kuroneko)", "Authentication & Security"],
+    detailedSkills: [
+      {
+        name: "Core PHP (7.x / 8.x)",
+        level: "Expert / Master",
+        years: "10+ Years",
+        isPrimary: true,
+        description: "Deep expertise in modern Object-Oriented PHP 8.x, strict type hinting, custom plugin development, and optimized backend processing.",
+        projects: ["Enterprise eCommerce Platform", "US Custom WordPress Engine", "Vehicle Reservation System"],
+        highlights: [
+          "10+ years writing high-volume production PHP logic",
+          "Custom WordPress plugin development and AJAX checkout endpoints",
+          "Decoupled Service-Repository backend architecture"
+        ]
+      },
+      {
+        name: "Laravel Framework",
+        level: "Expert",
+        years: "8+ Years",
+        isPrimary: true,
+        description: "Enterprise Laravel development utilizing Eloquent ORM, Service-Repository pattern and RESTful API endpoints.",
+        projects: ["Enterprise eCommerce Platform", "IoT Monitoring Platform", "Butwal Cricket Platform"],
+        highlights: [
+          "Built modular multi-tenant backend engines",
+          "Redis queue workers for high-concurrency order processing",
+          "Custom middleware & OAuth / JWT authentication"
+        ]
+      },
+      {
+        name: "Yii Framework",
+        level: "Advanced",
+        years: "6+ Years",
+        isPrimary: false,
+        description: "High-performance Yii 1.x / 2.x enterprise web application development with Active Record optimization and role-based access control.",
+        projects: ["Resource Management System", "Enterprise eCommerce Platform"],
+        highlights: [
+          "Optimized relational query builders for large datasets",
+          "Role-Based Access Control (RBAC) implementations"
+        ]
+      },
+      {
+        name: "RESTful API Architecture",
+        level: "Expert",
+        years: "10+ Years",
+        isPrimary: true,
+        description: "Designing, documenting, and implementing secure JSON REST APIs powering web applications and mobile apps.",
+        projects: ["Enterprise eCommerce Platform", "IoT Monitoring Platform", "Vehicle Reservation System"],
+        highlights: [
+          "Standardized request/response formats & error handling",
+          "API rate limiting, CORS configuration, and Swagger/OpenAPI docs",
+          "FCM push notification integration"
+        ]
+      },
+      {
+        name: "Payment Gateway Integration",
+        level: "Expert",
+        years: "8+ Years",
+        isPrimary: true,
+        description: "Integrating Japanese enterprise payment gateways (GMO Payment Gateway, Kuroneko Payment) alongside Stripe API.",
+        projects: ["Enterprise eCommerce Platform", "US WooCommerce Storefronts"],
+        highlights: [
+          "Credit card tokenization & 2-phase settlement workflows",
+          "Webhook event processing & automated failed-payment retry logic",
+          "PCI-DSS compliant transaction security"
+        ]
+      }
+    ]
   },
   {
-    category: "Frameworks & CMS",
-    iconName: "Layers",
-    skills: ["Laravel", "WordPress & WooCommerce", "Yii Framework", "Spring Boot", "Angular"]
-  },
-  {
-    category: "Database",
+    category: "Database & Caching",
     iconName: "Database",
-    skills: ["MySQL", "PostgreSQL", "Firestore", "Redis Cache"]
+    description: "High-performance data layer design, index tuning, transaction safety",
+    skills: ["MySQL", "PostgreSQL", "Firestore", "Database Design", "Query Optimization"],
+    detailedSkills: [
+      {
+        name: "MySQL",
+        level: "Expert",
+        years: "10+ Years",
+        isPrimary: true,
+        description: "Relational schema architecture, composite index design, EXPLAIN plan execution analysis, and ACID transaction safety.",
+        projects: ["Enterprise eCommerce Platform", "Vehicle Reservation System"],
+        highlights: [
+          "Optimized slow queries reducing execution latency dramatically",
+          "Designed multi-tenant normalized relational schemas",
+          "Stored procedures, triggers, and foreign key constraints"
+        ]
+      },
+      {
+        name: "PostgreSQL",
+        level: "Advanced",
+        years: "6+ Years",
+        isPrimary: true,
+        description: "Advanced relational database features, JSONB columns, complex CTE queries, and time-series data indexing.",
+        projects: ["Resource Management System", "IoT Monitoring Platform"],
+        highlights: [
+          "Optimized analytical reporting queries for workforce metrics",
+          "Time-series sensor telemetry data logging"
+        ]
+      },
+      {
+        name: "Redis Cache",
+        level: "Proficient",
+        years: "5+ Years",
+        isPrimary: false,
+        description: "In-memory key-value caching, session storage, rate limiting counters, and queue buffering.",
+        projects: ["Enterprise eCommerce Platform", "IoT Monitoring Platform"],
+        highlights: [
+          "Sub-millisecond query cache retrieval for frequent catalog requests",
+          "Queue driver for background mailers and push notifications"
+        ]
+      },
+      {
+        name: "Firestore",
+        level: "Proficient",
+        years: "4+ Years",
+        isPrimary: false,
+        description: "NoSQL document store design with real-time listeners for instant synchronization across clients.",
+        projects: ["IoT Monitoring Platform", "Butwal Cricket Platform"],
+        highlights: [
+          "Live telemetry state updates and score feed streaming"
+        ]
+      }
+    ]
   },
   {
-    category: "Cloud & Services",
+    category: "Frameworks & Frontend",
+    iconName: "Layers",
+    description: "Full-stack web application development, API integration, interactive dashboards, and responsive UIs.",
+    skills: ["Laravel", "WordPress", "Angular", "React", "JavaScript (ES6+)", "Node.js", "Bootstrap"],
+    detailedSkills: [
+      {
+        name: "WordPress",
+        level: "Expert",
+        years: "8+ Years",
+        isPrimary: true,
+        description: "Bespoke PHP theme & plugin development without bloated page builders, custom post types, hooks/filters, WPML multilanguage support.",
+        projects: ["US Client Custom WordPress Engine", "WooCommerce Booking Storefront"],
+        highlights: [
+          "Custom PHP plugin development for specialized business logic",
+          "Speed optimization and security hardening"
+        ]
+      },
+      {
+        name: "Angular",
+        level: "Advanced",
+        years: "5+ Years",
+        isPrimary: false,
+        description: "Building responsive single-page administrative dashboards with TypeScript, RxJS observables, and components.",
+        projects: ["Resource Management System", "IoT Monitoring Platform"],
+        highlights: [
+          "Enterprise reporting dashboards with charts & data table exports",
+          "Role-based routing guards & reactive form validation"
+        ]
+      },
+      {
+        name: "React & TypeScript",
+        level: "Proficient",
+        years: "4+ Years",
+        isPrimary: false,
+        description: "Modern component-based UI development with React Hooks, Tailwind CSS, TypeScript interfaces, and Vite.",
+        projects: ["Personal Portfolio", "Interactive Dashboards"],
+        highlights: [
+          "Clean component modularity and responsive layout design"
+        ]
+      },
+      {
+        name: "Node.js",
+        level: "Proficient",
+        years: "4+ Years",
+        isPrimary: false,
+        description: "Server-side JavaScript runtime for lightweight microservices, build tools, and asynchronous task execution.",
+        projects: ["API Gateways & Build Tooling"],
+        highlights: [
+          "npm package automation and express micro-routes"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Architecture & System Design",
+    iconName: "Cpu",
+    description: "Maintainable enterprise codebases structured for longevity, clean architecture, and decoupled design patterns.",
+    skills: ["SOLID Principles", "Repository Pattern", "Service-Repository Architecture", "Design Patterns", "MVC Architecture"],
+    detailedSkills: [
+      {
+        name: "Service-Repository Pattern",
+        level: "Expert",
+        years: "8+ Years",
+        isPrimary: true,
+        description: "Decoupling business rules from controllers and persistence layers to ensure high testability and maintainability.",
+        projects: ["Enterprise eCommerce Platform", "Vehicle Reservation System"],
+        highlights: [
+          "Strict separation of concerns across enterprise modules",
+          "Interchangeable data sources via repository interfaces"
+        ]
+      },
+      {
+        name: "SOLID Principles",
+        level: "Expert",
+        years: "10+ Years",
+        isPrimary: true,
+        description: "Applying Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion across backend codebases.",
+        projects: ["All Enterprise Projects"],
+        highlights: [
+          "Modular architecture engineered for long-term scalability"
+        ]
+      }
+    ]
+  },
+  {
+    category: "Cloud & Real-Time Services",
     iconName: "Cloud",
-    skills: ["Google Cloud Platform", "Firebase", "FCM Push Notifications", "Cloud Functions"]
+    description: "Cloud infrastructure, Firebase real-time persistence, and push notification distribution.",
+    skills: ["Google Cloud Platform (GCP)", "Firebase", "FCM Push Notifications", "Cloud Functions"],
+    detailedSkills: [
+      {
+        name: "Firebase & FCM",
+        level: "Advanced",
+        years: "5+ Years",
+        isPrimary: true,
+        description: "Firebase Authentication, Firestore Realtime listeners, Cloud Messaging (FCM) for mobile/web push notifications.",
+        projects: ["IoT Monitoring Platform", "Butwal Cricket Platform"],
+        highlights: [
+          "Real-time sensor telemetry streaming and live match updates",
+          "FCM payload formatting for iOS & Android app alerts"
+        ]
+      },
+      {
+        name: "Google Cloud Platform",
+        level: "Proficient",
+        years: "4+ Years",
+        isPrimary: false,
+        description: "Deploying and managing cloud resources, Cloud Run, Cloud Storage buckets, and IAM permissions.",
+        projects: ["Cloud Hosted Applications"],
+        highlights: [
+          "Containerized web application deployment and monitoring"
+        ]
+      }
+    ]
   },
   {
-    category: "Tools & DevOps",
+    category: "DevOps & Developer Tools",
     iconName: "Wrench",
-    skills: ["Git", "Composer", "Docker", "Postman", "Swagger / OpenAPI"]
+    description: "Version control, dependency managers, containerization, API documentation, and testing tools.",
+    skills: ["Git", "Composer", "npm", "Docker", "Postman", "Swagger / OpenAPI", "Linux / Bash"],
+    detailedSkills: [
+      {
+        name: "Git & Version Control",
+        level: "Expert",
+        years: "10+ Years",
+        isPrimary: true,
+        description: "Git branching workflows (GitFlow, feature branches), pull request reviews, and release tagging.",
+        projects: ["All Enterprise & Freelance Projects"],
+        highlights: [
+          "Collaboration with remote engineering teams in Japan & Nepal"
+        ]
+      },
+      {
+        name: "Docker & Containerization",
+        level: "Proficient",
+        years: "4+ Years",
+        isPrimary: false,
+        description: "Dockerizing PHP, Nginx, MySQL, and Redis microservices for uniform development and production deployments.",
+        projects: ["Enterprise Application Environments"],
+        highlights: [
+          "Dockerfile and docker-compose configurations"
+        ]
+      },
+      {
+        name: "Postman & OpenAPI / Swagger",
+        level: "Expert",
+        years: "8+ Years",
+        isPrimary: true,
+        description: "Interactive API testing, automated collection runners, environment variables, and Swagger specification writing.",
+        projects: ["RESTful API Projects"],
+        highlights: [
+          "Clear API contracts for mobile & frontend developer handoffs"
+        ]
+      }
+    ]
   }
 ];
 
@@ -440,10 +755,10 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     label: "10+ Years",
     subtext: "Professional Software Engineering Experience",
     iconName: "Award",
-    highlight: true
+    //highlight: true
   },
   {
-    label: "25+ Global Projects",
+    label: "15+ Global Projects",
     subtext: "Enterprise Systems, CRM, WordPress & eCommerce Delivered",
     iconName: "Briefcase"
   },
@@ -453,21 +768,27 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     iconName: "Zap"
   },
   {
-    label: "Global Clients (US & Japan)",
-    subtext: "10 Years of Remote Engineering for Japanese Enterprises & US Businesses",
-    iconName: "Globe"
-  },
-  {
     label: "Backend Architecture",
     subtext: "SOLID Principles, Repository Pattern & Design Patterns",
     iconName: "Cpu"
   },
   {
     label: "Performance Optimization",
-    subtext: "SQL Query Tuning, Core Web Vitals & Caching",
+    subtext: "SQL Query Tuning, Caching",
     iconName: "TrendingUp"
-  }
+  },
+  {
+    label: "Professional Developer (Full time)",
+    subtext: "Application development for Japanese Enterprises",
+    iconName: "Globe"
+  },
+  {
+    label: "Freelance Developer (in Free time)",
+    subtext: "Develop local projects and client projects",
+    iconName: "Globe"
+  },
 ];
+
 
 export const CONTACT_DATA: ContactInfo = {
   email: "shakya.niral@gmail.com",

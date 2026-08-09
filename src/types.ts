@@ -21,12 +21,24 @@ export interface ExperienceItem {
   techStack: string[];
 }
 
+export interface SubProject {
+  id?: string;
+  name: string;
+  imageUrl: string;
+  description?: string;
+  tags?: string[];
+  link?: string;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
   tags: string[];
-  category: 'eCommerce' | 'Reservations' | 'Resource Mgmt' | 'IoT' | 'Community' | 'All';
+  category: 'eCommerce' | 'Reservations' | 'Resource Mgmt' | 'IoT' | 'Community' | 'CMS & eCommerce' | 'All';
   description: string;
+  imageUrl?: string;
+  images?: string[];
+  subProjects?: SubProject[];
   longDescription?: string;
   keyFeatures?: string[];
   architectureDetails?: string;
@@ -37,10 +49,22 @@ export interface ProjectItem {
   };
 }
 
+export interface SkillDetail {
+  name: string;
+  level?: string;
+  years?: string;
+  description?: string;
+  projects?: string[];
+  highlights?: string[];
+  isPrimary?: boolean;
+}
+
 export interface SkillCategory {
   category: string;
   iconName: string;
+  description: string;
   skills: string[];
+  detailedSkills?: SkillDetail[];
 }
 
 export interface AchievementItem {
