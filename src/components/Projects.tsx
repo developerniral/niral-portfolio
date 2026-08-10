@@ -289,7 +289,7 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Key Features */}
-              {activeModalProject.keyFeatures && false && (
+              {activeModalProject.keyFeatures && (
                 <div className="space-y-3">
                   <h4 className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider">
                     Key Technical Features
@@ -318,7 +318,7 @@ export const Projects: React.FC = () => {
               )}
 
               {/* Code Snippet */}
-              {activeModalProject.codeSnippet && false && (
+              {activeModalProject.codeSnippet && (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-bold text-[#F8FAFC] flex items-center gap-1.5">

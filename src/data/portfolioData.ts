@@ -94,10 +94,11 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     period: "2014 — Present",
     location: "Nepal",
     highlights: [
-      "Designed and developed enterprise CRM, CMS and eCommerce system using Core PHP, Laravel, and Angular.",
-      "Designed and implemented scalable RESTful APIs for web and mobile applications.",
+      "Developed and customized multiple Japanese eCommerce platforms using PHP, Laravel, Yii, EC-CUBE implementing complex business logic including loyalty points, custom coupons, customer/agent/vendor management, commission calculation, periodic subscriptions, product/stock management, and Japanese payment gateway integrations.",
+      "Designed and implemented scalable RESTful APIs supporting Angular web applications and companion Flutter mobile applications, including Firebase Cloud Messaging (FCM) for event-driven push notifications.",
+      "Developed real-time Angular dashboards using Firebase Cloud Firestore and RxJS Observables to monitor IoT alerts and device status, implementing nested collections, dynamic queries, real-time subscriptions, and interactive data visualization.",
       "Designed modular backend architectures using Laravel and Yii, applying MVC, SOLID principles, service-layer patterns, and reusable components to improve maintainability and scalability",
-      "Integrated Stripe, Firebase, FCM, and major Japanese payment gateways (GMO, Kuroneko Payment).",
+      "Integrated Stripe, Firebase, FCM, Japanese payment gateways (GMO, Kuroneko) and other third party API.",
       "Optimized MySQL and PostgreSQL databases through query tuning, indexing, and applying transaction",
       "Participated in system design, database schema planning, and application architecture discussions.",
       "Mentored intern developers through code reviews, debugging assistance, resolving technical challenges and supporting feature implementation.",      
@@ -122,48 +123,49 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: "ecommerce-platform",
     title: "Enterprise eCommerce Platform",
-    tags: ["Laravel", "Yii", "PostgreSQL", "Japanese Gateways"],
+    tags: ["Laravel", "Yii", "Eccube", "Prestashop", "jQuery", "Ajax", "PostgreSQL", "Japanese Payment Gateways"],
     category: "eCommerce",
     imageUrl: "/assets/projects/ecommerce-main.jpg",
-    description: "Enterprise eCommerce platform featuring inventory management, subscriptions, coupons, reward points, commissions, and Japanese payment gateway integration.",
+    description: "Japanese eCommerce Platforms — BeautyHealth, Fujidai, McCoy & SkyPremium",
     subProjects: [
       {
         id: "sub-1",
-        name: "Japanese Multi-Vendor B2B & B2C Marketplace",
+        name: "Fujidai",
         imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
-        description: "B2B and B2C storefront featuring bulk quantity discounting, inventory sync across regional fulfillment hubs, and GMO / Kuroneko payment gateways.",
+        description: "",
         tags: ["Laravel", "MySQL", "GMO Gateway", "B2B / B2C"]
       },
       {
         id: "sub-2",
-        name: "Subscription & Recurring Membership Portal",
+        name: "SkyPremium",
         imageUrl: "/assets/projects/sub-subscription-portal.jpg",
-        description: "Automated recurring order billing system with flexible delivery schedules, member reward tiers, and automated failed-payment recovery workflows.",
+        description: "",
         tags: ["Laravel", "Stripe", "Subscriptions", "Redis"]
       },
       {
         id: "sub-3",
-        name: "High-Volume Flash Sale & Coupon Storefront",
+        name: "BeautyHealth",
         imageUrl: "/assets/projects/sub-flash-sale.jpg",
-        description: "Optimized storefront engineered for peak flash sale traffic events with real-time stock allocation and fast gateway checkout.",
+        description: "",
         tags: ["Yii", "PostgreSQL", "Caching", "Coupons"]
       },
       {
         id: "sub-4",
-        name: "Affiliate & Multi-Tier Commission Engine",
+        name: "McCoy",
         imageUrl: "/assets/projects/sub-affiliate-engine.jpg",
-        description: "Comprehensive partner portal for tracking affiliate referral sales, calculating dynamic commission tiers, and managing payout processing.",
+        description: "",
         tags: ["Laravel", "REST APIs", "Affiliates", "Analytics"]
       }
     ],
-    longDescription: "A comprehensive multi-tenant eCommerce engine engineered for high-volume transactions and complex pricing rules. Features integrated inventory tracking across warehouses, automated recurring subscription billing, tiered reward point distribution, and custom commission structures.",
+    longDescription: "Designed and customized eCommerce solutions for Japanese businesses using Laravel, Yii, EC-CUBE, and PrestaShop, extending existing frameworks to meet unique business requirements. Implemented loyalty point accumulation and redemption with validity periods, admin-controlled coupon rules, customer/agent/vendor workflows with automated commission calculation, recurring product subscriptions with automatic repurchase, complex product and inventory/stock management, and integrations with Japanese payment gateways.",
     keyFeatures: [
-      "Multi-tier subscription billing engine with automated retry workflows",
-      "Payment gateway integrations (GMO, Kuroneko Payment, Stripe)",
-      "Coupons & timesale discount logic as offer system",
+      "Group-product and inventory/stock management",
+      "Payment gateway integrations (GMO, Kuroneko, Stripe)",
+      "Customer-specific offers and business rules",
+      "Recurring and periodic product purchases",
       "High-throughput MySQL query optimization for peak sales events"
     ],
-    architectureDetails: "Built on a modular Laravel framework using the Repository-Service pattern to decouple business logic from controllers. Includes background queue processing via Redis for order receipts and notification dispatch.",
+    architectureDetails: "Worked on the customization and extension of existing eCommerce platforms, translating complex Japanese business requirements into maintainable backend logic, database structures, APIs, and administrative workflows.",
     codeSnippet: {
       language: "php",
       filename: "app/Services/Payment/JapaneseGatewayService.php",
@@ -209,64 +211,41 @@ class JapaneseGatewayService implements PaymentGatewayInterface
     }
   },
   {
-    id: "vehicle-reservation",
-    title: "Vehicle Reservation System",
-    tags: ["Laravel", "Angular", "Firebase", "FCM"],
-    category: "Reservations",
-    imageUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80",
-    description: "Reservation management platform with REST APIs, scheduling, booking management, and mobile push notifications.",
-    longDescription: "An end-to-end fleet and vehicle booking platform enabling real-time slot scheduling, driver assignment, vehicle availability tracking, and automated mobile alerts.",
-    keyFeatures: [
-      "Real-time reservation availability engine with collision prevention",
-      "Firebase Cloud Messaging (FCM) push notifications for booking alerts",
-      "RESTful API suite consumed by Angular Web & Mobile Native apps",
-      "Automated PDF invoice generation and email dispatch"
-    ],
-    architectureDetails: "Utilizes Laravel API resources with JWT / Sanction authentication. Firebase Firestore synchronization handles live driver assignment status updates.",
-    codeSnippet: {
-      language: "php",
-      filename: "app/Http/Controllers/Api/ReservationController.php",
-      code: `<?php
-
-namespace App\\Http\\Controllers\\Api;
-
-use App\\Http\\Requests\\CreateBookingRequest;
-use App\\Services\\ReservationService;
-use App\\Http\\Resources\\ReservationResource;
-use Illuminate\\Http\\JsonResponse;
-
-class ReservationController extends Controller
-{
-    public function store(CreateBookingRequest $request, ReservationService $service): JsonResponse
-    {
-        $reservation = $service->createReservation(
-            userId: $request->user()->id,
-            vehicleId: $request->validated('vehicle_id'),
-            startDate: $request->validated('start_date'),
-            endDate: $request->validated('end_date')
-        );
-
-        return response()->json([
-            'message' => 'Vehicle booked successfully',
-            'data'    => new ReservationResource($reservation)
-        ], 201);
-    }
-}`
-    }
-  },
-  {
     id: "resource-management",
-    title: "Resource Management System",
+    title: "CRM & Resource Management System",
     tags: ["Laravel","Yii", "Angular", "PostgreSQL","FCM"],
     category: "Resource Mgmt",
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
     description: "Enterprise workforce management system with RBAC, reporting, dashboards, and export functionality.",
-    longDescription: "A workforce management suite designed for tracking project allocation, employee billable hours, role-based access control, and executive reporting.",
+    longDescription: "Developed and maintained multiple CRM and enterprise management applications for Japanese organizations, covering staff management, resource management, HR operations, vehicle booking, municipal information services, reporting, and mobile application integration.",
     keyFeatures: [
       "Granular Role-Based Access Control (RBAC) down to field level",
-      "Interactive analytics dashboard with Angular charts & CSV/Excel/PDF export",
-      "Workforce utilization tracking with multi-currency cost calculations",
-      "Audit logging for enterprise compliance"
+      "Import and export file with various formats CSV/Excel/PDF",
+      "Proper loging ",
+      "Staff and resource management"
+    ],
+    subProjects: [
+       {
+        id: "sub2-1",
+        name: "JHN",
+        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        description: "Developed a resource and staff management platform used by Japanese organizations to manage employees, organizational roles, daily work status, operational activities, and company reporting.",
+        tags: ["Yii", "PostgresSQL", "jQuery"]
+      },
+      {
+        id: "sub2-2",
+        name: "Sendai / Senboku / Morinfo",
+        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        description: "Developed information platforms used by Japanese municipalities to distribute the latest news and information to registered users. Implemented backend workflows and API-based notification functionality supporting companion Flutter mobile applications through Firebase Cloud Messaging.",
+        tags: ["Laravel", "FCM", "PostgresSQL", "Cronjobs", "jQuery", "API"]
+      },
+      {
+        id: "sub2-3",
+        name: "Car Riraku — Vehicle Reservation Platform",
+        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        description: "Developed the Laravel backend and RESTful APIs for a vehicle reservation and booking platform with an Angular frontend and companion Flutter mobile application.",
+        tags: ["Laravel", "FCM", "PostgresSQL"]
+      },
     ],
     architectureDetails: "Architected using the Yii framework back-end serving optimized REST endpoints to an Angular single-page frontend with cached DB aggregations.",
     codeSnippet: {
@@ -274,69 +253,84 @@ class ReservationController extends Controller
       filename: "components/RbacManager.php",
       code: `<?php
 
-namespace app\\components;
-
-use yii\\base\\Component;
-use yii\\rbac\\DbManager;
-
-class RbacManager extends Component
-{
-    public function checkPermission($userId, $permissionName, $params = [])
+public static function recoverStuckProcessingRows(): int
     {
-        $auth = \\Yii::$app->authManager;
-        return $auth->checkAccess($userId, $permissionName, $params);
-    }
-}`
+        $processingStatus  = config('backend.NOTIFICATION_STATUS.PROCESSING');
+        $exceptionalStatus = config('backend.NOTIFICATION_STATUS.EXCEPTIONAL_FAILED');
+        $stuckMinutes      = (int) config('backend.NOTIFICATION_PROCESSING_STUCK_MINUTES', 60);
+        $cutoff            = Carbon::now()->subMinutes($stuckMinutes)->format('Y-m-d H:i:s');
+        $now               = Date('Y-m-d H:i:s');
+
+        $stuckRows = DB::table('notifier_operation_logs')
+            ->where('notified_status', $processingStatus)
+            ->whereNotNull('process_started_at')
+            ->where('process_started_at', '<', $cutoff)
+            ->select('notifier_operation_log_id', 'process_no')
+            ->get();
+
+        if ($stuckRows->isEmpty()) {
+            return 0;
+        }
+
+        $stuckIds = $stuckRows->pluck('notifier_operation_log_id')->all();
+
+        DB::table('notifier_operation_logs')
+            ->whereIn('notifier_operation_log_id', $stuckIds)
+            ->update([
+                'notified_status'      => $exceptionalStatus,
+                'process_completed_at' => $now,
+            ]);
+            }`
     }
   },
   {
     id: "iot-monitoring",
-    title: "IoT Monitoring Platform",
+    title: "Smart Applications & IoT Solutions",
     tags: ["Laravel", "Firebase", "Angular", "Real-time", "IoT"],
     category: "IoT",
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
     description: "Industrial monitoring platform with real-time dashboards and cloud-connected IoT devices.",
-    longDescription: "An industrial IoT platform collecting telemetry data from physical sensor nodes, visualizing environmental parameters in real-time, and firing automated safety alerts.",
+    longDescription: "Developed real-time Angular dashboards using Firebase Cloud Firestore and RxJS Observables to monitor IoT alerts and device status, implementing nested collections, dynamic queries, real-time subscriptions, and interactive data visualization.",
     keyFeatures: [
-      "Real-time sensor telemetry ingestion and state persistence",
       "Interactive analytics dashboard with Angular charts & CSV/Excel/PDF export",
       "Live updating web dashboard powered by Firebase Realtime DB",
       "Threshold alert engine with automated email & FCM based mobile notification",
-      "Historical data archiving and trend analysis graphs"
+      "Historical data archiving and trend analysis graphs",
+      "Japanese text processing and Regular-expression-based action extraction"
     ],
-    architectureDetails: "Laravel background workers ingest incoming MQTT/HTTP payloads, persist time-series logs in PostgreSQL, and stream current status to Firebase for zero-latency client updates.",
+    subProjects: [
+      {
+        id: "sub3-1",
+        name: "Fsensing",
+        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        description: "",
+        tags: ["Laravel", "Angular", "Firebase"]
+      },
+      {
+        id: "sub3-2",
+        name: "Actra",
+        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        description: "",
+        tags: ["Laravel", "PostgreSQL"]
+      },
+    ],
+    architectureDetails: "Developed an IoT-based safety monitoring application used in construction environments. Connected IoT devices monitor measurements such as height and hook attachment status, with the resulting device information displayed through an interactive administrative dashboard.",
     codeSnippet: {
       language: "php",
       filename: "app/Jobs/ProcessTelemetryData.php",
       code: `<?php
+   this._subscriptions['alert_log'] = this._subscriptions['alert_log'] = this._firestore
+          .collection<AlertLog>(FirebaseCollection.AlertLog)
+          .doc('documentId')
+          .collection(dates
+            , ref => ref
+            .orderBy('created_at','desc')
+          )          
+          .valueChanges()        
+          .subscribe((data:any) => {    
+            this.alertLogList = data;
+          });
 
-namespace App\\Jobs;
-
-use App\\Models\\DeviceTelemetry;
-use App\\Services\\FirebaseSyncService;
-use Illuminate\\Bus\\Queueable;
-use Illuminate\\Contracts\\Queue\\ShouldQueue;
-
-class ProcessTelemetryData implements ShouldQueue
-{
-    use Queueable;
-
-    public function __construct(
-        public string $deviceId,
-        public array $sensorMetrics
-    ) {}
-
-    public function handle(FirebaseSyncService $firebase): void
-    {
-        DeviceTelemetry::create([
-            'device_id' => $this->deviceId,
-            'temperature' => $this->sensorMetrics['temp'] ?? null,
-            'humidity' => $this->sensorMetrics['humidity'] ?? null,
-            'recorded_at' => now(),
-        ]);
-
-        $firebase->updateDeviceNode($this->deviceId, $this->sensorMetrics);
-    }
 }`
     }
   },
@@ -349,9 +343,8 @@ class ProcessTelemetryData implements ShouldQueue
     description: "Community cricket platform featuring tournaments, teams, players, fixtures, events, and news management.",
     longDescription: "A dedicated regional sports platform empowering cricket leagues, local teams, and fans with live tournament scorecards, player statistics, match schedules, and media publishing.",
     keyFeatures: [
-      "Tournament lifecycle & group/knockout match fixture generators",
+      "Tournament lifecycle & group/knockout match fixture",
       "Player stats calculation engine (batting averages, bowling economy, strike rates)",
-      "Live ball-by-ball score updating interface",
       "News, event announcements, and gallery management"
     ],
     architectureDetails: "Clean Laravel application leveraging Eloquent ORM relationships with full page caching and media management for high fan engagement during major tournaments.",
@@ -389,24 +382,24 @@ class Player extends Model
     tags: ["WordPress", "PHP"],
     category: "CMS",
     imageUrl: "/assets/projects/wordpress-main.jpg",
-    description: "Custom WordPress theme and plugin solution engineered for US business clients with tailored custom post types, API integrations.",
+    description: "Developed custom WordPress websites and business applications for US-based clients, extending WordPress beyond standard themes and plugins to implement business-specific functionality.",
     subProjects: [
       {
         id: "us-sub-1",
         name: "Uranz Hair Studio & Spa",
         imageUrl: "/assets/projects/sub-woo-booking.jpg",
         description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
-        tags: ["WordPress"]
+        tags: ["WordPress","PHP"]
       },
       {
         id: "us-sub-2",
         name: "Liveboard",
         imageUrl: "/assets/projects/liveboard.jpg",
-        description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
+        description: "Custom WordPress theme with support for multilanguage feature",
         tags: ["WordPress", "PHP", "Multilanguage"]
       }
     ],
-    longDescription: "Bespoke WordPress & WooCommerce platform built for US clients requiring tailored business workflows. Features lightweight custom theme architecture (no heavy visual builders), custom plugin development for specialized business logic, Stripe payment gateway integrations, and speed optimizations.",
+    longDescription: "",
     keyFeatures: [
       "Custom PHP plugin development for automated client workflows and data processing",
       "Tailored WooCommerce checkout & payment gateway hooks (Stripe, PayPal, Authorize.Net)",
