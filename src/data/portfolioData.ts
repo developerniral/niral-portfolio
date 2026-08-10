@@ -125,34 +125,34 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
     title: "Enterprise eCommerce Platform",
     tags: ["Laravel", "Yii", "Eccube", "Prestashop", "jQuery", "Ajax", "PostgreSQL", "Japanese Payment Gateways"],
     category: "eCommerce",
-    imageUrl: "/assets/projects/sub-subscription-portal.jpg",
-    description: "Japanese eCommerce Platforms — BeautyHealth, Fujidai, McCoy, Mykart & SkyPremium",
+    imageUrl: "/assets/projects/ecommerce-main.jpg",
+    description: "Japanese eCommerce Platforms — BeautyHealth, Fujidai, McCoy & SkyPremium",
     subProjects: [
       {
         id: "sub-1",
         name: "Fujidai",
-        imageUrl: "/assets/projects/fujidai.png",
+        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
         description: "",
-        tags: ["Laravel", "PostgreSQL", "GMO Gateway"]
+        tags: ["Laravel", "MySQL", "GMO Gateway", "B2B / B2C"]
       },
       {
         id: "sub-2",
         name: "SkyPremium",
         imageUrl: "/assets/projects/sub-subscription-portal.jpg",
         description: "",
-        tags: ["Laravel", "Stripe", "Subscriptions","Coupons"]
+        tags: ["Laravel", "Stripe", "Subscriptions", "Redis"]
       },
       {
         id: "sub-3",
-        name: "MyKart",
-        imageUrl: "/assets/projects/mykart.png",
+        name: "BeautyHealth",
+        imageUrl: "/assets/projects/sub-flash-sale.jpg",
         description: "",
         tags: ["Yii", "PostgreSQL", "Caching", "Coupons"]
       },
       {
         id: "sub-4",
         name: "McCoy",
-        imageUrl: "/assets/projects/selmy.png",
+        imageUrl: "/assets/projects/sub-affiliate-engine.jpg",
         description: "",
         tags: ["Laravel", "REST APIs", "Affiliates", "Analytics"]
       }
@@ -302,7 +302,7 @@ public static function recoverStuckProcessingRows(): int
       {
         id: "sub3-1",
         name: "Fsensing",
-        imageUrl: "/assets/projects/fsensing.png",
+        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
         description: "",
         tags: ["Laravel", "Angular", "Firebase"]
       },
@@ -347,14 +347,6 @@ public static function recoverStuckProcessingRows(): int
       "Player stats calculation engine (batting averages, bowling economy, strike rates)",
       "News, event announcements, and gallery management"
     ],
-    subProjects: [{
-        id: "us-sub-1",
-        name: "Butwal Cricket Committe",
-        imageUrl: "/assets/projects/bcdc.png",
-        description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
-        tags: ["WordPress","PHP"]
-      },
-    ],
     architectureDetails: "Clean Laravel application leveraging Eloquent ORM relationships with full page caching and media management for high fan engagement during major tournaments.",
     codeSnippet: {
       language: "php",
@@ -389,13 +381,13 @@ class Player extends Model
     title: "Custom WordPress",
     tags: ["WordPress", "PHP"],
     category: "CMS",
-    imageUrl: "/assets/projects/uranz.png",
+    imageUrl: "/assets/projects/wordpress-main.jpg",
     description: "Developed custom WordPress websites and business applications for US-based clients, extending WordPress beyond standard themes and plugins to implement business-specific functionality.",
     subProjects: [
       {
         id: "us-sub-1",
         name: "Uranz Hair Studio & Spa",
-        imageUrl: "/assets/projects/uranz.png",
+        imageUrl: "/assets/projects/sub-woo-booking.jpg",
         description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
         tags: ["WordPress","PHP"]
       },
