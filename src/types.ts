@@ -34,7 +34,7 @@ export interface ProjectItem {
   id: string;
   title: string;
   tags: string[];
-  category: 'eCommerce' | 'Reservations' | 'Resource Mgmt' | 'IoT' | 'Community' | 'CMS & eCommerce' | 'All';
+  category: 'eCommerce' | 'Reservations' | 'Resource Mgmt' | 'IoT' | 'Community' | 'CMS & eCommerce' | 'CMS' | 'All';
   description: string;
   imageUrl?: string;
   images?: string[];

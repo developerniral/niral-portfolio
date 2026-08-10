@@ -9,6 +9,7 @@ import { Achievements } from './components/Achievements';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
+import { InteractiveCanvas } from './components/InteractiveCanvas';
 
 export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -22,7 +23,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1120] text-[#F8FAFC] font-sans selection:bg-[#D4AF37] selection:text-slate-950">
+    <div className="min-h-screen bg-[#0B1120] text-[#F8FAFC] font-sans selection:bg-[#D4AF37] selection:text-slate-950 relative">
+      {/* Full-Page Interactive Cursor Canvas Background */}
+      <InteractiveCanvas />
+
       {/* Header Navigation */}
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
@@ -30,7 +34,7 @@ export default function App() {
       />
 
       {/* Hero Section */}
-      <main>
+      <main className="relative z-10">
         <Hero
           onOpenResume={() => setIsResumeOpen(true)}
           onNavigate={handleNavigate}

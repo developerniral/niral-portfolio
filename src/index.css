@@ -30,3 +30,17 @@
   background: #D4AF37;
 }
 
+/* Scroll long website screenshots from top to bottom on hover */
+.scroll-on-hover {
+  object-fit: cover !important;
+  object-position: top !important;
+  transition: object-position 4.5s ease-in-out !important;
+}
+
+.group:hover .scroll-on-hover,
+.group\/sub:hover .scroll-on-hover,
+.group\/modal:hover .scroll-on-hover,
+.scroll-on-hover:hover {
+  object-position: bottom !important;
+}
+

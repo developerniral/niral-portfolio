@@ -19,7 +19,7 @@ export const Projects: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
   const [copiedCode, setCopiedCode] = useState(false);
 
-  const categories = ['All', 'eCommerce', 'Reservations', 'Resource Mgmt', 'IoT', 'Community', 'CMS & eCommerce'];
+  const categories = ['All', ...Array.from(new Set(FEATURED_PROJECTS.map(p => p.category)))];
 
   const filteredProjects = selectedCategory === 'All'
     ? FEATURED_PROJECTS
@@ -89,9 +89,9 @@ export const Projects: React.FC = () => {
                         target.onerror = null;
                         target.src = "https://images.unsplash.com/photo-1556742049-0a670f4a4591?auto=format&fit=crop&w=1200&q=80";
                       }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                      className="w-full h-full object-cover object-top scroll-on-hover opacity-90 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80 pointer-events-none" />
                     
                     {/* Category Badge overlay */}
                     <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -107,6 +107,11 @@ export const Projects: React.FC = () => {
 
                     <span className="absolute top-3 right-3 text-xs font-mono font-bold text-slate-200 bg-[#0B1120]/80 backdrop-blur-md px-2 py-0.5 rounded-md border border-slate-800">
                       #{index + 1}
+                    </span>
+
+                    {/* Scroll Indicator Cue */}
+                    <span className="absolute bottom-2.5 right-3 px-2 py-0.5 rounded bg-slate-950/85 backdrop-blur-md text-[10px] font-mono font-semibold text-[#D4AF37] border border-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-md">
+                      Hover to scroll view
                     </span>
                   </div>
                 )}
@@ -157,29 +162,34 @@ export const Projects: React.FC = () => {
             
             {/* Modal Hero Banner */}
             {activeModalProject.imageUrl && (
-              <div className="relative h-56 sm:h-64 w-full bg-slate-950 overflow-hidden rounded-t-2xl border-b border-slate-800">
+              <div className="relative h-64 sm:h-72 w-full bg-slate-950 overflow-hidden rounded-t-2xl border-b border-slate-800 group/modal">
                 <img
                   src={activeModalProject.imageUrl}
                   alt={activeModalProject.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top scroll-on-hover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent pointer-events-none" />
                 
                 <button
                   onClick={() => setActiveModalProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-xl bg-slate-950/70 backdrop-blur-md text-slate-300 hover:text-[#F8FAFC] hover:bg-slate-900 transition-colors border border-slate-800 cursor-pointer"
+                  className="absolute top-4 right-4 p-2 rounded-xl bg-slate-950/70 backdrop-blur-md text-slate-300 hover:text-[#F8FAFC] hover:bg-slate-900 transition-colors border border-slate-800 cursor-pointer z-10"
                 >
                   <X className="w-5 h-5 text-[#D4AF37]" />
                 </button>
 
-                <div className="absolute bottom-4 left-6 right-6">
-                  <span className="px-2.5 py-1 rounded-lg bg-[#0B1120]/90 backdrop-blur-md text-[#D4AF37] font-mono text-xs font-bold border border-[#D4AF37]/40">
-                    {activeModalProject.category}
+                <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between pointer-events-none">
+                  <div>
+                    <span className="px-2.5 py-1 rounded-lg bg-[#0B1120]/90 backdrop-blur-md text-[#D4AF37] font-mono text-xs font-bold border border-[#D4AF37]/40">
+                      {activeModalProject.category}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] mt-2 drop-shadow-md">
+                      {activeModalProject.title}
+                    </h3>
+                  </div>
+                  <span className="hidden sm:inline-block px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md text-[11px] font-mono font-medium text-[#D4AF37] border border-slate-800">
+                    Hover frame to scroll full page
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] mt-2 drop-shadow-md">
-                    {activeModalProject.title}
-                  </h3>
                 </div>
               </div>
             )}
@@ -236,7 +246,7 @@ export const Projects: React.FC = () => {
                         <div>
                           {/* Sub-Project Image */}
                           <div
-                            className="relative h-40 w-full overflow-hidden bg-slate-950 cursor-pointer"
+                            className="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-950 cursor-pointer group/sub"
                             onClick={() => setSelectedImage({ url: sub.imageUrl, title: sub.name })}
                           >
                             <img
@@ -248,12 +258,15 @@ export const Projects: React.FC = () => {
                                 target.onerror = null;
                                 target.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80";
                               }}
-                              className="w-full h-full object-cover group-hover/sub:scale-105 transition-transform duration-300"
+                              className="w-full h-full object-cover object-top scroll-on-hover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-80" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-80 pointer-events-none" />
                             <div className="absolute top-2 right-2 p-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md text-slate-200 border border-slate-800 opacity-90 group-hover/sub:opacity-100 transition-opacity">
                               <Maximize2 className="w-3.5 h-3.5 text-[#D4AF37]" />
                             </div>
+                            <span className="absolute bottom-2 left-2 px-1.5 py-0.5 rounded bg-slate-950/80 backdrop-blur-md text-[9px] font-mono text-[#D4AF37] border border-slate-800 opacity-0 group-hover/sub:opacity-100 transition-opacity">
+                              Hover to scroll / Click to enlarge
+                            </span>
                           </div>
 
                           {/* Sub-Project Details */}
@@ -369,25 +382,30 @@ export const Projects: React.FC = () => {
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-[#111827] rounded-2xl border border-slate-800 p-2 overflow-hidden shadow-2xl"
+            className="relative max-w-4xl w-full bg-[#111827] rounded-2xl border border-slate-800 p-3 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full max-h-[80vh] overflow-hidden rounded-xl bg-slate-950 flex items-center justify-center">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/80 px-2">
+              <h4 className="font-bold text-sm text-[#F8FAFC] truncate pr-4">{selectedImage.title}</h4>
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="p-1.5 rounded-xl bg-slate-900 text-slate-300 hover:text-[#D4AF37] border border-slate-800 cursor-pointer shrink-0"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="relative w-full overflow-y-auto rounded-xl bg-slate-950 flex flex-col items-center justify-start p-2 max-h-[78vh] custom-scrollbar">
               <img
                 src={selectedImage.url}
                 alt={selectedImage.title}
                 referrerPolicy="no-referrer"
-                className="max-w-full max-h-[80vh] object-contain"
+                className="w-full h-auto object-contain rounded-lg shadow-md"
               />
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-3 right-3 p-2 rounded-xl bg-slate-950/80 backdrop-blur-md text-slate-200 hover:text-[#D4AF37] border border-slate-800 cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
-            <div className="p-3 text-center">
-              <h4 className="font-bold text-sm text-[#F8FAFC]">{selectedImage.title}</h4>
+            
+            <div className="pt-2 text-center text-[11px] text-slate-400 font-mono">
+              Use mouse wheel or touch to scroll through full webpage view
             </div>
           </div>
         </div>

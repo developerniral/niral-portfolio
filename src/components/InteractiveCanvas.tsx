@@ -30,10 +30,10 @@ export const InteractiveCanvas: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let width = 0;
-    let height = 0;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-    // Mouse state
+    // Mouse tracking state across full viewport
     const mouse = {
       x: -1000,
       y: -1000,
@@ -45,19 +45,18 @@ export const InteractiveCanvas: React.FC = () => {
     const particles: Particle[] = [];
     const pulseRings: PulseRing[] = [];
 
-    // Colors matching luxury theme
+    // Palette matching gold/amber/sky blue luxury theme
     const colors = [
       '#D4AF37', // Gold
       '#F59E0B', // Amber
-      '#38BDF8', // Sky blue accent
-      '#94A3B8', // Slate accent
+      '#38BDF8', // Sky Blue
+      '#94A3B8', // Slate
     ];
 
     const initCanvasSize = () => {
-      const rect = canvas.parentElement?.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect ? rect.width : window.innerWidth;
-      height = rect ? rect.height : window.innerHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -69,9 +68,9 @@ export const InteractiveCanvas: React.FC = () => {
 
     const initParticles = () => {
       particles.length = 0;
-      // Scale count with screen area
-      const count = Math.floor((width * height) / 12000);
-      const total = Math.min(Math.max(count, 45), 90);
+      // Scale particle density with viewport size
+      const count = Math.floor((width * height) / 11000);
+      const total = Math.min(Math.max(count, 55), 110);
 
       for (let i = 0; i < total; i++) {
         const radius = Math.random() * 2 + 1.2;
@@ -83,7 +82,7 @@ export const InteractiveCanvas: React.FC = () => {
           radius,
           baseRadius: radius,
           color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: Math.random() * 0.6 + 0.3,
+          alpha: Math.random() * 0.55 + 0.3,
         });
       }
     };
@@ -91,12 +90,10 @@ export const InteractiveCanvas: React.FC = () => {
     initCanvasSize();
     initParticles();
 
-    // Event Listeners
+    // Mouse Listeners attached to window for whole page cursor tracking
     const handleMouseMove = (e: MouseEvent) => {
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      mouse.targetX = e.clientX - rect.left;
-      mouse.targetY = e.clientY - rect.top;
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
       mouse.active = true;
     };
 
@@ -107,17 +104,12 @@ export const InteractiveCanvas: React.FC = () => {
     };
 
     const handleClick = (e: MouseEvent) => {
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickY = e.clientY - rect.top;
-
       pulseRings.push({
-        x: clickX,
-        y: clickY,
+        x: e.clientX,
+        y: e.clientY,
         radius: 5,
         maxRadius: 180,
-        alpha: 0.8,
+        alpha: 0.85,
       });
     };
 
@@ -126,24 +118,23 @@ export const InteractiveCanvas: React.FC = () => {
       initParticles();
     };
 
-    const parent = canvas.parentElement || window;
-    parent.addEventListener('mousemove', handleMouseMove as EventListener);
-    parent.addEventListener('mouseleave', handleMouseLeave as EventListener);
-    parent.addEventListener('click', handleClick as EventListener);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('click', handleClick);
     window.addEventListener('resize', handleResize);
 
-    // Render loop
+    // Animation Loop
     const render = () => {
-      // Smooth lerp for mouse position
-      mouse.x += (mouse.targetX - mouse.x) * 0.1;
-      mouse.y += (mouse.targetY - mouse.y) * 0.1;
+      // Smooth easing for mouse cursor position
+      mouse.x += (mouse.targetX - mouse.x) * 0.12;
+      mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
       ctx.clearRect(0, 0, width, height);
 
       // 1. Draw subtle background grid lines
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.025)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
       ctx.lineWidth = 1;
-      const gridSize = 40;
+      const gridSize = 48;
       for (let x = 0; x < width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -157,7 +148,7 @@ export const InteractiveCanvas: React.FC = () => {
         ctx.stroke();
       }
 
-      // 2. Draw Interactive Mouse Radial Glow Spotlight
+      // 2. Interactive Cursor Radial Glow Spotlight
       if (mouse.x > -500 && mouse.y > -500) {
         const radGrad = ctx.createRadialGradient(
           mouse.x,
@@ -165,19 +156,19 @@ export const InteractiveCanvas: React.FC = () => {
           0,
           mouse.x,
           mouse.y,
-          260
+          280
         );
-        radGrad.addColorStop(0, 'rgba(212, 175, 55, 0.15)'); // Warm Gold
-        radGrad.addColorStop(0.4, 'rgba(245, 158, 11, 0.06)'); // Amber
+        radGrad.addColorStop(0, 'rgba(212, 175, 55, 0.16)'); // Warm Gold
+        radGrad.addColorStop(0.45, 'rgba(245, 158, 11, 0.06)'); // Amber Glow
         radGrad.addColorStop(1, 'rgba(11, 17, 32, 0)');
 
         ctx.fillStyle = radGrad;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 260, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, 280, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // 3. Update & Draw Pulse Rings from Click
+      // 3. Update & Draw Pulse Rings from Clicks
       for (let i = pulseRings.length - 1; i >= 0; i--) {
         const ring = pulseRings[i];
         ring.radius += 3.5;
@@ -195,18 +186,18 @@ export const InteractiveCanvas: React.FC = () => {
         ctx.stroke();
       }
 
-      // 4. Update & Draw Particles and Inter-connections
-      const maxDistance = 110;
-      const mouseRadius = 180;
+      // 4. Update & Draw Particles and Proximity Web
+      const maxDistance = 115;
+      const mouseRadius = 190;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Move particle
+        // Particle position drift
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wall bounce
+        // Bounce off canvas viewport walls
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
@@ -217,17 +208,15 @@ export const InteractiveCanvas: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < mouseRadius) {
-            // Slight force pushing particle away or creating elastic field
             const force = (mouseRadius - dist) / mouseRadius;
             const angle = Math.atan2(dy, dx);
             p.x -= Math.cos(angle) * force * 1.2;
             p.y -= Math.sin(angle) * force * 1.2;
 
-            // Expand particle size near cursor
             p.radius = p.baseRadius + force * 2.5;
 
-            // Draw line to mouse cursor
-            const lineAlpha = (1 - dist / mouseRadius) * 0.6;
+            // Connect particle to cursor
+            const lineAlpha = (1 - dist / mouseRadius) * 0.55;
             ctx.strokeStyle = `rgba(212, 175, 55, ${lineAlpha})`;
             ctx.lineWidth = 1.2;
             ctx.beginPath();
@@ -239,7 +228,7 @@ export const InteractiveCanvas: React.FC = () => {
           }
         }
 
-        // Draw Particle Dot
+        // Draw particle dot
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
         ctx.beginPath();
@@ -247,7 +236,7 @@ export const InteractiveCanvas: React.FC = () => {
         ctx.fill();
         ctx.globalAlpha = 1.0;
 
-        // Draw connections between nearby particles
+        // Connect nearby particles
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
@@ -255,7 +244,7 @@ export const InteractiveCanvas: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.25;
+            const alpha = (1 - dist / maxDistance) * 0.22;
             ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
@@ -273,9 +262,9 @@ export const InteractiveCanvas: React.FC = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      parent.removeEventListener('mousemove', handleMouseMove as EventListener);
-      parent.removeEventListener('mouseleave', handleMouseLeave as EventListener);
-      parent.removeEventListener('click', handleClick as EventListener);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('click', handleClick);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -283,7 +272,7 @@ export const InteractiveCanvas: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto z-0 opacity-80 transition-opacity duration-500"
+      className="fixed inset-0 pointer-events-none z-0 opacity-80 transition-opacity duration-500"
     />
   );
 };

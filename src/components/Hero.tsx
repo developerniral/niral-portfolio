@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { InteractiveCanvas } from './InteractiveCanvas';
 import {
   FileText,
   Mail,
@@ -34,8 +33,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
   return (
     <section id="hero" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
-      {/* Interactive JS Canvas Background with cursor movement & particle network */}
-      <InteractiveCanvas />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
