@@ -61,7 +61,7 @@ export const About: React.FC = () => {
                   <div className="relative aspect-3/4 w-full rounded-xl overflow-hidden bg-[#111827] border border-slate-800/80 flex items-center justify-center">
                     {!imageError ? (
                       <img
-                        src="/assets/profile.jpg"
+                        src="/assets/ns.jpg"
                         alt="Niral Shakya"
                         onError={() => setImageError(true)}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
