@@ -131,30 +131,30 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       {
         id: "sub-1",
         name: "Fujidai",
-        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        imageUrl: "/assets/projects/fujidai.png",
         description: "",
-        tags: ["Laravel", "MySQL", "GMO Gateway", "B2B / B2C"]
+        tags: ["Laravel", "PostgreSQL", "API"]
       },
       {
         id: "sub-2",
         name: "SkyPremium",
         imageUrl: "/assets/projects/sub-subscription-portal.jpg",
         description: "",
-        tags: ["Laravel", "Stripe", "Subscriptions", "Redis"]
+        tags: ["Yii", "Stripe", "Subscriptions"]
       },
       {
         id: "sub-3",
-        name: "BeautyHealth",
-        imageUrl: "/assets/projects/sub-flash-sale.jpg",
+        name: "Mykart",
+        imageUrl: "/assets/projects/mykart.png",
         description: "",
-        tags: ["Yii", "PostgreSQL", "Caching", "Coupons"]
+        tags: ["Laravel", "PostgreSQL", "Caching", "Coupons"]
       },
       {
         id: "sub-4",
         name: "McCoy",
-        imageUrl: "/assets/projects/sub-affiliate-engine.jpg",
+        imageUrl: "/assets/projects/mccoy.png",
         description: "",
-        tags: ["Laravel", "REST APIs", "Affiliates", "Analytics"]
+        tags: ["Laravel", "REST APIs"]
       }
     ],
     longDescription: "Designed and customized eCommerce solutions for Japanese businesses using Laravel, Yii, EC-CUBE, and PrestaShop, extending existing frameworks to meet unique business requirements. Implemented loyalty point accumulation and redemption with validity periods, admin-controlled coupon rules, customer/agent/vendor workflows with automated commission calculation, recurring product subscriptions with automatic repurchase, complex product and inventory/stock management, and integrations with Japanese payment gateways.",
@@ -228,14 +228,14 @@ class JapaneseGatewayService implements PaymentGatewayInterface
        {
         id: "sub2-1",
         name: "JHN",
-        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        imageUrl: "/assets/projects/jhn.png",
         description: "Developed a resource and staff management platform used by Japanese organizations to manage employees, organizational roles, daily work status, operational activities, and company reporting.",
         tags: ["Yii", "PostgresSQL", "jQuery"]
       },
       {
         id: "sub2-2",
         name: "Sendai / Senboku / Morinfo",
-        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        imageUrl: "/assets/projects/crm1.png",
         description: "Developed information platforms used by Japanese municipalities to distribute the latest news and information to registered users. Implemented backend workflows and API-based notification functionality supporting companion Flutter mobile applications through Firebase Cloud Messaging.",
         tags: ["Laravel", "FCM", "PostgresSQL", "Cronjobs", "jQuery", "API"]
       },
@@ -302,7 +302,7 @@ public static function recoverStuckProcessingRows(): int
       {
         id: "sub3-1",
         name: "Fsensing",
-        imageUrl: "/assets/projects/sub-japanese-marketplace.jpg",
+        imageUrl: "/assets/projects/fsensing.png",
         description: "",
         tags: ["Laravel", "Angular", "Firebase"]
       },
@@ -311,7 +311,7 @@ public static function recoverStuckProcessingRows(): int
         name: "Actra",
         imageUrl: "/assets/projects/sub-subscription-portal.jpg",
         description: "",
-        tags: ["Laravel", "PostgreSQL"]
+        tags: ["Laravel", "PostgreSQL","Regular Expression"]
       },
     ],
     architectureDetails: "Developed an IoT-based safety monitoring application used in construction environments. Connected IoT devices monitor measurements such as height and hook attachment status, with the resulting device information displayed through an interactive administrative dashboard.",
@@ -387,7 +387,7 @@ class Player extends Model
       {
         id: "us-sub-1",
         name: "Uranz Hair Studio & Spa",
-        imageUrl: "/assets/projects/sub-woo-booking.jpg",
+        imageUrl: "/assets/projects/uranz.png",
         description: "Custom WordPress theme as per business vibe and custom plugin to handle booking service.",
         tags: ["WordPress","PHP"]
       },
