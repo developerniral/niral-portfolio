@@ -138,7 +138,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       {
         id: "sub-2",
         name: "SkyPremium",
-        imageUrl: "/assets/projects/sub-subscription-portal.jpg",
+        imageUrl: "/assets/projects/skypremium.jpg",
         description: "",
         tags: ["Yii", "Stripe", "Subscriptions"]
       },
@@ -152,7 +152,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       {
         id: "sub-4",
         name: "McCoy",
-        imageUrl: "/assets/projects/mccoy.png",
+        imageUrl: "/assets/projects/selmy.png",
         description: "",
         tags: ["Laravel", "REST APIs"]
       }
