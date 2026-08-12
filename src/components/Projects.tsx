@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Sparkles,
   Code2,
@@ -30,6 +30,56 @@ export const Projects: React.FC = () => {
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
   };
+
+  const closeDetailModal = () => {
+    setActiveModalProject(null);
+    if (window.history.state?.modalOpen) {
+      window.history.back();
+    }
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+    if (window.history.state?.modalOpen) {
+      window.history.back();
+    }
+  };
+
+  // Close modals on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (selectedImage) {
+          closeImageModal();
+        } else if (activeModalProject) {
+          closeDetailModal();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, activeModalProject]);
+
+  // Handle Browser Back button (popstate) to close open popups
+  useEffect(() => {
+    const handlePopState = () => {
+      if (selectedImage) {
+        setSelectedImage(null);
+      } else if (activeModalProject) {
+        setActiveModalProject(null);
+      }
+    };
+
+    if (activeModalProject || selectedImage) {
+      window.history.pushState({ modalOpen: true }, '');
+      window.addEventListener('popstate', handlePopState);
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [activeModalProject !== null, selectedImage !== null]);
 
   return (
     <section id="projects" className="py-16 sm:py-20 bg-[#0B1120]">
@@ -157,8 +207,14 @@ export const Projects: React.FC = () => {
 
       {/* Detail Modal */}
       {activeModalProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto relative space-y-6 text-[#F8FAFC]">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={closeDetailModal}
+        >
+          <div
+            className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto relative space-y-6 text-[#F8FAFC]"
+            onClick={(e) => e.stopPropagation()}
+          >
             
             {/* Modal Hero Banner */}
             {activeModalProject.imageUrl && (
@@ -172,7 +228,7 @@ export const Projects: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/60 to-transparent pointer-events-none" />
                 
                 <button
-                  onClick={() => setActiveModalProject(null)}
+                  onClick={closeDetailModal}
                   className="absolute top-4 right-4 p-2 rounded-xl bg-slate-950/70 backdrop-blur-md text-slate-300 hover:text-[#F8FAFC] hover:bg-slate-900 transition-colors border border-slate-800 cursor-pointer z-10"
                 >
                   <X className="w-5 h-5 text-[#D4AF37]" />
@@ -205,7 +261,7 @@ export const Projects: React.FC = () => {
                   </h3>
                 </div>
                 <button
-                  onClick={() => setActiveModalProject(null)}
+                  onClick={closeDetailModal}
                   className="p-2 rounded-xl text-slate-400 hover:text-[#F8FAFC] hover:bg-slate-800 transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5 text-[#D4AF37]" />
@@ -362,7 +418,7 @@ export const Projects: React.FC = () => {
                   ))}
                 </div>
                 <button
-                  onClick={() => setActiveModalProject(null)}
+                  onClick={closeDetailModal}
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#D4AF37] text-slate-950 font-bold text-xs hover:bg-[#F59E0B] transition-colors shadow-md cursor-pointer"
                 >
                   Close Detail View
@@ -379,7 +435,7 @@ export const Projects: React.FC = () => {
       {selectedImage && (
         <div
           className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-200"
-          onClick={() => setSelectedImage(null)}
+          onClick={closeImageModal}
         >
           <div
             className="relative max-w-4xl w-full bg-[#111827] rounded-2xl border border-slate-800 p-3 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
@@ -388,7 +444,7 @@ export const Projects: React.FC = () => {
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800/80 px-2">
               <h4 className="font-bold text-sm text-[#F8FAFC] truncate pr-4">{selectedImage.title}</h4>
               <button
-                onClick={() => setSelectedImage(null)}
+                onClick={closeImageModal}
                 className="p-1.5 rounded-xl bg-slate-900 text-slate-300 hover:text-[#D4AF37] border border-slate-800 cursor-pointer shrink-0"
               >
                 <X className="w-4 h-4" />

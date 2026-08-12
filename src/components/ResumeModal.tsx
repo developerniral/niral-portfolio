@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Printer, Download, Copy, Check, FileText, Mail, MapPin, Globe, Linkedin } from 'lucide-react';
 import { HERO_DATA, ABOUT_DATA, EXPERIENCE_DATA, FEATURED_PROJECTS, TECHNICAL_SKILLS, CONTACT_DATA } from '../data/portfolioData';
 
@@ -9,6 +9,36 @@ interface ResumeModalProps {
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
+
+  const handleClose = () => {
+    onClose();
+    if (window.history.state?.resumeModalOpen) {
+      window.history.back();
+    }
+  };
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    const handlePopState = () => {
+      onClose();
+    };
+
+    window.history.pushState({ resumeModalOpen: true }, '');
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -46,8 +76,14 @@ ${TECHNICAL_SKILLS.map(s => `${s.category}: ${s.skills.join(', ')}`).join('\n')}
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden relative">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={handleClose}
+    >
+      <div
+        className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden relative"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Modal Toolbar (non-printable) */}
         <div className="p-4 bg-[#0B1120] text-[#F8FAFC] flex items-center justify-between border-b border-slate-800 print:hidden">
@@ -74,7 +110,7 @@ ${TECHNICAL_SKILLS.map(s => `${s.category}: ${s.skills.join(', ')}`).join('\n')}
             </button>
 
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors ml-2"
             >
               <X className="w-5 h-5 text-[#D4AF37]" />
