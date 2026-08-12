@@ -87,7 +87,7 @@ export const Projects: React.FC = () => {
                       onError={(e) => {
                         const target = e.currentTarget;
                         target.onerror = null;
-                        target.src = "https://images.unsplash.com/photo-1556742049-0a670f4a4591?auto=format&fit=crop&w=1200&q=80";
+                        target.src = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80";
                       }}
                       className="w-full h-full object-cover object-top scroll-on-hover opacity-90 group-hover:opacity-100"
                     />
