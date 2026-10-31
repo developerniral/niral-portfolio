@@ -90,6 +90,7 @@ export interface CertificationItem {
   description: string;
   imageUrl: string;
   credentialUrl?: string;
+  verifyUrl?: string;
   skills?: string[];
   badgeText?: string;
 }

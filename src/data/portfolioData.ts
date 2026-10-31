@@ -835,6 +835,7 @@ export const CERTIFICATIONS: CertificationItem[] = [
     badgeText: "Cloud & Realtime",
     description: "Certified competency in event-driven cloud architecture, Firebase Cloud Firestore realtime subscriptions, and Firebase Cloud Messaging (FCM) push notification pipelines.",
     imageUrl: "/assets/certificates/cert-cloud-firebase.svg",
+    verifyUrl: "https://cloud.google.com",
     skills: ["Google Cloud", "Firebase", "Firestore", "FCM", "Realtime WebSockets"]
   },
   {
