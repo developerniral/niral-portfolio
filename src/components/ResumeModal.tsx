@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Printer, Download, Copy, Check, FileText, Mail, MapPin, Globe, Linkedin } from 'lucide-react';
-import { HERO_DATA, ABOUT_DATA, EXPERIENCE_DATA, FEATURED_PROJECTS, TECHNICAL_SKILLS, CONTACT_DATA } from '../data/portfolioData';
+import { HERO_DATA, ABOUT_DATA, EXPERIENCE_DATA, FEATURED_PROJECTS, TECHNICAL_SKILLS, CONTACT_DATA, CERTIFICATIONS } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -219,6 +219,26 @@ ${TECHNICAL_SKILLS.map(s => `${s.category}: ${s.skills.join(', ')}`).join('\n')}
                 <div key={idx} className="space-y-1">
                   <span className="font-bold text-[#F8FAFC] text-[11px] uppercase block">{sk.category}</span>
                   <p className="text-slate-300 text-[11px]">{sk.skills.join(', ')}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Education & Certifications */}
+          <div className="space-y-3">
+            <h2 className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider font-mono border-b border-slate-800 pb-1">
+              Education &amp; Key Certifications
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              {CERTIFICATIONS.slice(0, 4).map((cert, cIdx) => (
+                <div key={cIdx} className="p-3 rounded-lg border border-slate-800 bg-[#0B1120] space-y-1">
+                  <div className="font-bold text-[#F8FAFC] flex justify-between">
+                    <span>{cert.title}</span>
+                    <span className="text-[10px] text-[#D4AF37] font-mono">{cert.issueDate}</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-medium">{cert.issuer}</div>
+                  <p className="text-[11px] text-slate-300 leading-snug">{cert.description}</p>
                 </div>
               ))}
             </div>

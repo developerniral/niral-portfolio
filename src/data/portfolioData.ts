@@ -4,7 +4,8 @@ import {
   ProjectItem,
   SkillCategory,
   AchievementItem,
-  ContactInfo
+  ContactInfo,
+  CertificationItem
 } from '../types';
 
 export const HERO_DATA = {
@@ -780,6 +781,72 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     subtext: "Develop local projects and client projects",
     iconName: "Globe"
   },
+];
+
+export const CERTIFICATIONS: CertificationItem[] = [
+  {
+    id: "cert-lbef-degree",
+    title: "B.Sc. (Hons) in Information Technology",
+    issuer: "Asia Pacific University (APU) / LBEF Campus",
+    issueDate: "Graduated with Honors",
+    badgeText: "Academic Degree",
+    description: "Specialized in Software Engineering, Java, relational database systems, and web application architecture from Lord Buddha Education Foundation in association with Asia Pacific University.",
+    imageUrl: "/assets/certificates/cert-lbef-degree.svg",
+    credentialUrl: "https://www.lbef.org",
+    skills: ["Software Engineering", "Java", "Database Design", "Web Architecture"]
+  },
+  {
+    id: "cert-laravel-enterprise",
+    title: "Enterprise Laravel & PHP Architecture",
+    issuer: "Professional Software Architecture Guild",
+    issueDate: "Senior Certified",
+    badgeText: "Core Backend",
+    description: "Verified mastery in enterprise Laravel framework patterns, SOLID principles, Service-Repository structure, transaction management, and high-throughput REST APIs.",
+    imageUrl: "/assets/certificates/cert-laravel-enterprise.svg",
+    credentialUrl: "https://laravel.com",
+    skills: ["Core PHP", "Laravel", "SOLID", "Repository Pattern", "REST API"]
+  },
+  {
+    id: "cert-react-fullstack",
+    title: "Full Stack React & Modern Web Specialist",
+    issuer: "Modern Web Engineering Institute",
+    issueDate: "Specialist Accredited",
+    badgeText: "Frontend & Fullstack",
+    description: "Accreditation in building modern Single Page Applications (SPA), React component architecture, TypeScript, state management, and seamless backend API integration.",
+    imageUrl: "/assets/certificates/cert-react-fullstack.svg",
+    credentialUrl: "https://react.dev",
+    skills: ["React", "TypeScript", "Tailwind CSS", "SPA", "REST APIs"]
+  },
+  {
+    id: "cert-database-systems",
+    title: "Relational Database Architect (PostgreSQL & MySQL)",
+    issuer: "Enterprise Database Systems Consortium",
+    issueDate: "Certified Master",
+    badgeText: "Database Systems",
+    description: "Advanced proficiency in relational schema design, query optimization, indexing strategies, ACID guarantees, lock contention elimination, and high concurrency.",
+    imageUrl: "/assets/certificates/cert-database-systems.svg",
+    skills: ["PostgreSQL", "MySQL", "Query Optimization", "Indexing", "ACID"]
+  },
+  {
+    id: "cert-cloud-firebase",
+    title: "Google Cloud Platform & Firebase Realtime Systems",
+    issuer: "Cloud & Distributed Systems Network",
+    issueDate: "Cloud Certified",
+    badgeText: "Cloud & Realtime",
+    description: "Certified competency in event-driven cloud architecture, Firebase Cloud Firestore realtime subscriptions, and Firebase Cloud Messaging (FCM) push notification pipelines.",
+    imageUrl: "/assets/certificates/cert-cloud-firebase.svg",
+    skills: ["Google Cloud", "Firebase", "Firestore", "FCM", "Realtime WebSockets"]
+  },
+  {
+    id: "cert-japanese-ecommerce",
+    title: "Enterprise Software Delivery & QA Standard",
+    issuer: "Miracle Interface Engineering Standards",
+    issueDate: "Tenured Recognition",
+    badgeText: "Enterprise QA",
+    description: "Recognition for tenured engineering excellence delivering mission-critical Japanese eCommerce platforms, Japanese payment gateways (GMO, Kuroneko, Stripe), and strict quality compliance.",
+    imageUrl: "/assets/certificates/cert-japanese-ecommerce.svg",
+    skills: ["EC-CUBE", "Payment Gateways", "Japanese QA Standards", "Enterprise Security"]
+  }
 ];
 
 

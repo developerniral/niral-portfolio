@@ -81,3 +81,15 @@ export interface ContactInfo {
   portfolio: string;
   location: string;
 }
+
+export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  issueDate?: string;
+  description: string;
+  imageUrl: string;
+  credentialUrl?: string;
+  skills?: string[];
+  badgeText?: string;
+}
