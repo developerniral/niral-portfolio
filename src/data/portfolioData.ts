@@ -5,8 +5,28 @@ import {
   SkillCategory,
   AchievementItem,
   ContactInfo,
-  CertificationItem
+  CertificationItem,
+  AppLinkItem
 } from '../types';
+
+export const BLOG_URL = "http://niralshakya.com.np/blog";
+
+export const APP_LINKS: AppLinkItem[] = [
+  {
+    id: "app-1",
+    name: "Nursery Kids",
+    url: "/app/nursury",
+    description: "An interactive, distraction-free web app designed for nursery children to master early literacy and numeracy.",
+    badge: "Early Learning"
+  },
+  {
+    id: "app-2",
+    name: "DSA Quest",
+    url: "/app/dsa-quest",
+    description: "An interactive, game-based learning platform that makes Data Structures and Algorithms easy and fun to understand through visual demonstrations, coding challenges, quizzes, and game.",
+    badge: "Learn Programming"
+  }
+];
 
 export const HERO_DATA = {
   name: "Niral Shakya",
@@ -16,12 +36,13 @@ export const HERO_DATA = {
   experienceYears: "10+",
   location: "Butwal, Nepal",
   socialLinks: [
-    { label: "LinkedIn", url: "https://linkedin.com/in/niral-shakya", icon: "Linkedin" },
-    { label: "GitHub", url: "https://github.com/niralshakya", icon: "Github" },
-    { label: "Portfolio", url: "https://niralshakya.com.np", icon: "Globe" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/niralshakya", icon: "Linkedin" },
+    { label: "GitHub", url: "https://github.com/developerniral", icon: "Github" },
+    { label: "Portfolio", url: "http://niralshakya.com.np", icon: "Globe" },
     { label: "Email", url: "mailto:shakya.niral@gmail.com", icon: "Mail", isEmail: true }
   ]
 };
+
 
 export const ABOUT_DATA = {
   summary: "Senior PHP Developer with 10+ years of experience designing and developing enterprise applications, scalable RESTful APIs, and backend systems for Japanese clients at Miracle Interface, alongside delivering custom WordPress and web applications for US clients as freelancer",

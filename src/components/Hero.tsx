@@ -17,11 +17,11 @@ import {
 import { HERO_DATA, CODE_SAMPLE_DEFAULT } from '../data/portfolioData';
 
 interface HeroProps {
-  onOpenResume: () => void;
+  onOpenResume?: () => void;
   onNavigate: (id: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
+export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'code'>('overview');
 
@@ -80,24 +80,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume, onNavigate }) => {
 
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-3 w-full sm:w-auto">
-              <button
-                onClick={onOpenResume}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-slate-950 bg-[#D4AF37] hover:bg-[#F59E0B] transition-all shadow-lg shadow-[#D4AF37]/20 active:scale-98"
-              >
-                <FileText className="w-4 h-4 text-slate-950" />
-                <span>Download Resume</span>
-              </button>
-
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('contact');
                 }}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-slate-950 bg-[#D4AF37] hover:bg-[#F59E0B] transition-all shadow-lg shadow-[#D4AF37]/20 active:scale-98"
+              >
+                <Mail className="w-4 h-4 text-slate-950" />
+                <span>Contact Me</span>
+              </a>
+
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('projects');
+                }}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-[#F8FAFC] bg-[#111827] hover:bg-slate-800 border border-slate-700 hover:border-[#D4AF37]/50 transition-all shadow-xs active:scale-98"
               >
-                <Mail className="w-4 h-4 text-[#D4AF37]" />
-                <span>Contact Me</span>
+                <Code2 className="w-4 h-4 text-[#D4AF37]" />
+                <span>View Featured Projects</span>
               </a>
             </div>
 

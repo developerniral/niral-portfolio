@@ -29,9 +29,6 @@ export const Certifications: React.FC = () => {
   const openCertModal = (cert: CertificationItem) => {
     setSelectedCert(cert);
     setZoomLevel(1);
-    if (!window.history.state?.certModalOpen) {
-      window.history.pushState({ certModalOpen: true }, '');
-    }
   };
 
   const closeCertModal = () => {
@@ -54,7 +51,7 @@ export const Certifications: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedCert]);
 
-  // Handle Browser Back button (popstate)
+  // Handle Browser Back button (popstate) to close open popup - identical to Projects.tsx
   useEffect(() => {
     const handlePopState = () => {
       if (selectedCert) {
@@ -63,13 +60,20 @@ export const Certifications: React.FC = () => {
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [selectedCert]);
+    if (selectedCert) {
+      window.history.pushState({ certModalOpen: true }, '');
+      window.addEventListener('popstate', handlePopState);
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [selectedCert !== null]);
 
   const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.25, 2.5));
   const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.25, 0.75));
   const handleResetZoom = () => setZoomLevel(1);
+
 
   return (
     <section id="certifications" className="py-16 sm:py-20 bg-[#0B1120] relative">
@@ -220,25 +224,14 @@ export const Certifications: React.FC = () => {
 
         return (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/90 backdrop-blur-md animate-in fade-in duration-200"
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4 pt-20 pb-6 sm:pt-24 sm:pb-8 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto"
             onClick={closeCertModal}
             role="dialog"
             aria-modal="true"
             aria-label={`Certificate: ${selectedCert.title}`}
           >
-            {/* Floating Top-Right Close Button for instant accessibility on all screen sizes */}
-            <button
-              onClick={closeCertModal}
-              className="fixed top-4 right-4 sm:top-6 sm:right-6 z-60 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700 hover:border-[#D4AF37] shadow-2xl transition-all cursor-pointer text-xs font-bold backdrop-blur-md active:scale-95 group"
-              aria-label="Close certificate popup"
-              title="Close popup (Esc)"
-            >
-              <X className="w-4 h-4 text-[#D4AF37] group-hover:rotate-90 transition-transform duration-200" />
-              <span>Close</span>
-            </button>
-
             <div
-              className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-5xl w-full max-h-[92vh] overflow-hidden flex flex-col relative text-[#F8FAFC]"
+              className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[calc(100vh-6.5rem)] sm:max-h-[calc(100vh-7.5rem)] overflow-hidden flex flex-col relative text-[#F8FAFC] my-auto mt-16 sm:mt-20"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
@@ -254,6 +247,7 @@ export const Certifications: React.FC = () => {
                     <div className="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
                       <span>{selectedCert.issuer}</span>
                       {selectedCert.issueDate && (
+
                         <>
                           <span>•</span>
                           <span className="text-[#D4AF37] font-mono">{selectedCert.issueDate}</span>
@@ -306,10 +300,20 @@ export const Certifications: React.FC = () => {
               </div>
 
               {/* Modal Image View Area with Zoom Controls */}
-              <div className="relative flex-1 bg-slate-950 overflow-auto flex flex-col items-center justify-center p-3 sm:p-6 min-h-[300px]">
+              <div
+                className="relative flex-1 bg-slate-950 overflow-auto flex flex-col items-center justify-center p-3 sm:p-6 min-h-[300px] cursor-pointer"
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) {
+                    closeCertModal();
+                  }
+                }}
+              >
                 
                 {/* Zoom Toolbar positioned at top left to keep top right clear */}
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-[#111827]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-lg">
+                <div
+                  className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-[#111827]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-lg cursor-default"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <button
                     onClick={handleZoomOut}
                     className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
@@ -335,19 +339,26 @@ export const Certifications: React.FC = () => {
                   </button>
                 </div>
 
-                {/* The Certificate Image */}
+                {/* The Certificate Image Container */}
                 <div
-                  className="w-full flex items-center justify-center transition-transform duration-200"
+                  className="w-full flex items-center justify-center transition-transform duration-200 cursor-pointer"
                   style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'center center' }}
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                      closeCertModal();
+                    }
+                  }}
                 >
                   <img
                     src={selectedCert.imageUrl}
                     alt={selectedCert.title}
-                    className="max-w-full max-h-[62vh] object-contain rounded-xl shadow-2xl border border-slate-800/80"
+                    className="max-w-full max-h-[62vh] object-contain rounded-xl shadow-2xl border border-slate-800/80 cursor-default"
+                    onClick={(e) => e.stopPropagation()}
                   />
                 </div>
 
               </div>
+
 
               {/* Modal Footer Details */}
               <div className="p-4 sm:p-5 bg-[#0B1120] border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">

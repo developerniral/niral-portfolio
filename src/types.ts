@@ -94,3 +94,13 @@ export interface CertificationItem {
   skills?: string[];
   badgeText?: string;
 }
+
+export interface AppLinkItem {
+  id?: string;
+  name: string;
+  url: string;
+  description?: string;
+  badge?: string;
+  isExternal?: boolean;
+}
+

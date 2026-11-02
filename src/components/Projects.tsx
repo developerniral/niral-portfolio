@@ -208,11 +208,11 @@ export const Projects: React.FC = () => {
       {/* Detail Modal */}
       {activeModalProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-[70] flex items-center justify-center p-4 pt-20 pb-6 sm:pt-24 sm:pb-8 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto"
           onClick={closeDetailModal}
         >
           <div
-            className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[92vh] overflow-y-auto relative space-y-6 text-[#F8FAFC]"
+            className="bg-[#111827] rounded-2xl border border-slate-800 shadow-2xl max-w-4xl w-full max-h-[calc(100vh-6.5rem)] sm:max-h-[calc(100vh-7.5rem)] overflow-y-auto relative space-y-6 text-[#F8FAFC] my-auto mt-16 sm:mt-20"
             onClick={(e) => e.stopPropagation()}
           >
             
