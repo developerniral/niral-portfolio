@@ -784,70 +784,61 @@ export const ACHIEVEMENTS: AchievementItem[] = [
 ];
 
 export const CERTIFICATIONS: CertificationItem[] = [
-  {
-    id: "cert-lbef-degree",
-    title: "B.Sc. (Hons) in Information Technology",
-    issuer: "Asia Pacific University (APU) / LBEF Campus",
+    {
+    id: "cs50x",
+    title: "CS50x: Introduction to Computer Science I",
+    issuer: "Harvard University",
     issueDate: "Graduated with Honors",
-    badgeText: "Academic Degree",
-    description: "Specialized in Software Engineering, Java, relational database systems, and web application architecture from Lord Buddha Education Foundation in association with Asia Pacific University.",
-    imageUrl: "/assets/certificates/cert-lbef-degree.svg",
-    credentialUrl: "https://www.lbef.org",
-    skills: ["Software Engineering", "Java", "Database Design", "Web Architecture"]
+    badgeText: "EDX",
+    description: "An immersive online course that introduces fundamental concepts and problem-solving techniques in computer science.",
+    imageUrl: "/assets/certificates/cs50.png",
+    credentialUrl: "https://verify.edx.org/cert/dc446c31fdc04263806f9a9782d982ef",
+    skills: [ "C programming","DSA","Database","Cryptography","web development","MySQL", ]
   },
   {
-    id: "cert-laravel-enterprise",
-    title: "Enterprise Laravel & PHP Architecture",
-    issuer: "Professional Software Architecture Guild",
+    id: "web1",
+    title: "Web Basic HTML, CSS, Javascript",
+    issuer: "The Hong Kong University of Science and Technology",
     issueDate: "Senior Certified",
-    badgeText: "Core Backend",
-    description: "Verified mastery in enterprise Laravel framework patterns, SOLID principles, Service-Repository structure, transaction management, and high-throughput REST APIs.",
-    imageUrl: "/assets/certificates/cert-laravel-enterprise.svg",
-    credentialUrl: "https://laravel.com",
-    skills: ["Core PHP", "Laravel", "SOLID", "Repository Pattern", "REST API"]
+    badgeText: "coursera",
+    description: " It covers the fundamentals of web development, web design principles and aims to equip learners with the foundational knowledge and skills necessary to build basic websites and understand the core concepts of web development",
+    imageUrl: "/assets/certificates/web-basic.png",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/GEP2JT4LEXVU",
+    skills: ["HTML","CSS","Javascript"]
   },
   {
-    id: "cert-react-fullstack",
-    title: "Full Stack React & Modern Web Specialist",
-    issuer: "Modern Web Engineering Institute",
+    id: "web2",
+    title: "Frontend Web UI Frameworks and Tools",
+    issuer: "The Hong Kong University of Science and Technology",
+    issueDate: "Senior Certified",
+    badgeText: "coursera",
+    description: "A course on frontend web UI frameworks and tools, covering topics like Bootstrap, Angular Material, and Sass for building modern, responsive interfaces.",
+    imageUrl: "/assets/certificates/web-ui.png",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/ANCH5626Q542",
+    skills: ["bootstrap","Material design","Responsiveness"]
+  },
+  {
+    id: "java1",
+    title: "Java Programming: Solving Problems with Software",
+    issuer: "Duke University",
     issueDate: "Specialist Accredited",
-    badgeText: "Frontend & Fullstack",
-    description: "Accreditation in building modern Single Page Applications (SPA), React component architecture, TypeScript, state management, and seamless backend API integration.",
-    imageUrl: "/assets/certificates/cert-react-fullstack.svg",
-    credentialUrl: "https://react.dev",
-    skills: ["React", "TypeScript", "Tailwind CSS", "SPA", "REST APIs"]
+    badgeText: "coursera",
+    description: "A course focusing on problem-solving techniques and practical application of Java programming for software development.",
+    imageUrl: "/assets/certificates/duke-java.png",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/verify/MD7H7MRY8JNY",
+    skills: ["Java"]
   },
   {
-    id: "cert-database-systems",
-    title: "Relational Database Architect (PostgreSQL & MySQL)",
-    issuer: "Enterprise Database Systems Consortium",
-    issueDate: "Certified Master",
-    badgeText: "Database Systems",
-    description: "Advanced proficiency in relational schema design, query optimization, indexing strategies, ACID guarantees, lock contention elimination, and high concurrency.",
-    imageUrl: "/assets/certificates/cert-database-systems.svg",
-    skills: ["PostgreSQL", "MySQL", "Query Optimization", "Indexing", "ACID"]
+    id: "english",
+    title: "Basic English",
+    issuer: "fondi Inc.",
+    issueDate: "Specialist Accredited",
+    badgeText: "fondi Inc",
+    description: "Earned the Basic English Certificate from fondi Inc. upon completing the foundational immersion and community onboarding program. This certificate validates my ability to navigate real-time English conversations in a global virtual environment, communicate effectively with international users from over 100 countries, and collaborate within a multicultural community.",
+    imageUrl: "/assets/certificates/english-fondi.png",
+    credentialUrl: "https://credsverse.com/credentials/7d3c4eae-9703-44db-879f-6d7ac49c845c",
+    skills: ["English","communication"]
   },
-  {
-    id: "cert-cloud-firebase",
-    title: "Google Cloud Platform & Firebase Realtime Systems",
-    issuer: "Cloud & Distributed Systems Network",
-    issueDate: "Cloud Certified",
-    badgeText: "Cloud & Realtime",
-    description: "Certified competency in event-driven cloud architecture, Firebase Cloud Firestore realtime subscriptions, and Firebase Cloud Messaging (FCM) push notification pipelines.",
-    imageUrl: "/assets/certificates/cert-cloud-firebase.svg",
-    verifyUrl: "https://cloud.google.com",
-    skills: ["Google Cloud", "Firebase", "Firestore", "FCM", "Realtime WebSockets"]
-  },
-  {
-    id: "cert-japanese-ecommerce",
-    title: "Enterprise Software Delivery & QA Standard",
-    issuer: "Miracle Interface Engineering Standards",
-    issueDate: "Tenured Recognition",
-    badgeText: "Enterprise QA",
-    description: "Recognition for tenured engineering excellence delivering mission-critical Japanese eCommerce platforms, Japanese payment gateways (GMO, Kuroneko, Stripe), and strict quality compliance.",
-    imageUrl: "/assets/certificates/cert-japanese-ecommerce.svg",
-    skills: ["EC-CUBE", "Payment Gateways", "Japanese QA Standards", "Enterprise Security"]
-  }
 ];
 
 
